@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Hasta el Rabo Todo es Toro — podcast sobre toros, actualidad, historias y conversación taurina.">
+  <meta name="theme-color" content="#0b0b0b">
+  <meta property="og:title" content="Hasta el Rabo Todo es Toro">
+  <meta property="og:description" content="El podcast donde hablamos de toros hasta el final.">
+  <meta property="og:type" content="website">
+  <title>Hasta el Rabo Todo es Toro | Podcast</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#inicio" aria-label="Hasta el Rabo Todo es Toro, inicio">
+      <span class="brand-mark">🐂</span>
+      <span>Hasta el Rabo<br><strong>Todo es Toro</strong></span>
+    </a>
+    <nav aria-label="Navegación principal">
+      <a href="#podcast">Podcast</a>
+      <a href="#episodios">Episodios</a>
+      <a href="#sobre">Sobre el programa</a>
+      <a class="nav-cta" href="https://anchor.fm/hastaelrabo" target="_blank" rel="noopener">Escuchar</a>
+    </nav>
+  </header>
+
+  <main id="inicio">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">🎙️ PODCAST TAURINO</p>
+        <h1>Hasta el Rabo<br><span>Todo es Toro</span></h1>
+        <p class="lead">Actualidad, historias, protagonistas y conversación sobre el mundo del toro. Porque aquí, como en la vida, <strong>hasta el rabo todo es toro.</strong></p>
+        <div class="actions">
+          <a class="button button-primary" href="https://anchor.fm/hastaelrabo" target="_blank" rel="noopener">▶ Escuchar el podcast</a>
+          <a class="button button-secondary" href="#sobre">Conocer el programa</a>
+        </div>
+        <p class="microcopy">Disponible online · Gratis · Escúchalo cuando quieras</p>
+      </div>
+      <div class="hero-art" aria-label="Ilustración decorativa de un toro">
+        <div class="sun"></div>
+        <div class="bull-card">
+          <div class="bull-horns">⌁</div>
+          <div class="bull-face">🐂</div>
+          <div class="bull-title">HASTA EL RABO<br><span>TODO ES TORO</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="listen-strip" id="podcast">
+      <div>
+        <p class="eyebrow">ESTÁS EN LA PLAZA</p>
+        <h2>Escucha el podcast</h2>
+        <p>Entra en la página actual del programa y descubre los episodios publicados.</p>
+      </div>
+      <a class="button button-light" href="https://anchor.fm/hastaelrabo" target="_blank" rel="noopener">Ir al podcast →</a>
+    </section>
+
+    <section class="section" id="episodios">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">SONIDO Y PALABRA</p>
+          <h2>Últimos episodios</h2>
+        </div>
+        <a class="text-link" href="https://anchor.fm/hastaelrabo" target="_blank" rel="noopener">Ver todos →</a>
+      </div>
+
+      <div class="episode-grid">
+        <article class="episode-card featured">
+          <span class="episode-number">PODCAST</span>
+          <div class="episode-icon">▶</div>
+          <h3>Todos los episodios, en un solo lugar</h3>
+          <p>Accede al catálogo completo de <em>Hasta el Rabo Todo es Toro</em> y elige el episodio que quieras escuchar.</p>
+          <a href="https://anchor.fm/hastaelrabo" target="_blank" rel="noopener">Escuchar ahora →</a>
+        </article>
+
+        <article class="episode-card">
+          <span class="episode-number">NOVEDADES</span>
+          <h3>¿Nuevo episodio?</h3>
+          <p>Cuando publiques una nueva entrega, puedes destacarla aquí fácilmente editando este archivo.</p>
+          <a href="#como-actualizar">Cómo actualizar →</a>
+        </article>
+
+        <article class="episode-card">
+          <span class="episode-number">COMUNIDAD</span>
+          <h3>Comparte el podcast</h3>
+          <p>Envía esta página a tus oyentes: es tu punto de entrada oficial y puedes mantenerla aunque cambies de plataforma.</p>
+          <a href="#compartir">Compartir →</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="about" id="sobre">
+      <div class="about-panel">
+        <p class="eyebrow">SOBRE EL PROGRAMA</p>
+        <h2>Una conversación que no se acaba hasta el rabo.</h2>
+        <p>Bienvenidos a <strong>Hasta el Rabo Todo es Toro</strong>, un espacio para hablar del mundo del toro con pasión, curiosidad y ganas de compartir historias.</p>
+        <p>Aquí caben la actualidad, las plazas, los protagonistas, las anécdotas y todo aquello que hace que cada conversación tenga su propia faena.</p>
+      </div>
+      <div class="quote-card">
+        <span>“</span>
+        <p>Hasta el rabo,<br><strong>todo es toro.</strong></p>
+      </div>
+    </section>
+
+    <section class="share section" id="compartir">
+      <div class="share-box">
+        <div>
+          <p class="eyebrow">HAZLO CORRER</p>
+          <h2>Comparte esta página</h2>
+          <p>Un solo enlace para que tus oyentes encuentren el podcast.</p>
+        </div>
+        <button class="button button-primary" id="shareButton" type="button">↗ Compartir</button>
+      </div>
+      <p class="share-status" id="shareStatus" aria-live="polite"></p>
+    </section>
+
+    <section class="update-guide section" id="como-actualizar">
+      <p class="eyebrow">SIN COMPLICACIONES</p>
+      <h2>Actualizar la web</h2>
+      <div class="steps">
+        <div><b>01</b><span>Edita <code>index.html</code> si quieres cambiar textos o enlaces.</span></div>
+        <div><b>02</b><span>Guarda los cambios y vuelve a publicar los archivos.</span></div>
+        <div><b>03</b><span>La dirección gratuita de tu página seguirá siendo la misma.</span></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <span class="brand-mark">🐂</span>
+      <div><strong>Hasta el Rabo Todo es Toro</strong><br><small>Podcast</small></div>
+    </div>
+    <div class="footer-links">
+      <a href="https://anchor.fm/hastaelrabo" target="_blank" rel="noopener">Podcast</a>
+      <a href="#inicio">Volver arriba ↑</a>
+    </div>
+    <p class="copyright">© <span id="year"></span> Hasta el Rabo Todo es Toro</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
