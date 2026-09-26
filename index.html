@@ -4,70 +4,80 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hasta el Rabo Todo es Toro — Podcast</title>
-  <meta name="description" content="Hasta el Rabo Todo es Toro — podcast de actualidad taurina. Información, opinión, entrevistas y nuestras secciones habituales.">
+  <meta name="description" content="Hasta el Rabo Todo es Toro — programa de radio taurino semanal de actualidad taurina.">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header class="site-header">
-    <div class="container">
-      <a class="brand" href="#inicio" aria-label="Hasta el Rabo Todo es Toro">
-        <img src="logo.jpg" alt="Logotipo de Hasta el Rabo Todo es Toro" class="logo">
-      </a>
-      <nav class="nav">
+    <div class="container header-inner">
+      <a class="mini-brand" href="#inicio">HASTA EL RABO</a>
+      <nav aria-label="Navegación principal">
         <a href="#escuchar">Escuchar</a>
-        <a href="#sobre">Sobre el programa</a>
+        <a href="#conoce">Conoce más</a>
       </nav>
     </div>
   </header>
 
   <main id="inicio">
     <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <span class="eyebrow">PODCAST TAURINO</span>
-          <h1>Hasta el Rabo<br>Todo es Toro</h1>
-          <p>Actualidad taurina, información, opinión, entrevistas y nuestras secciones habituales.</p>
-          <a class="button" href="https://anchor.fm/hastaelrabo" target="_blank" rel="noopener">Escuchar el podcast</a>
+      <div class="container">
+        <div class="logo-wrap">
+          <img src="logo.jpg" alt="Podcast Hasta el Rabo Todo es Toro" class="main-logo">
         </div>
-        <div class="hero-logo">
-          <img src="logo.jpg" alt="Hasta el Rabo Todo es Toro" loading="eager">
+
+        <div class="hero-content">
+          <span class="eyebrow">PODCAST TAURINO</span>
+          <h1>Hasta el Rabo<br><span>Todo es Toro</span></h1>
+          <p>Actualidad taurina, información, opinión, entrevistas y nuestras secciones habituales.</p>
+          <a class="button button-primary" href="https://anchor.fm/hastaelrabo" target="_blank" rel="noopener">Escuchar el podcast</a>
         </div>
       </div>
     </section>
 
     <section id="escuchar" class="section">
-      <div class="container">
-        <div class="section-heading">
-          <span class="eyebrow">DÓNDE ESCUCHARNOS</span>
-          <h2>Tu podcast taurino</h2>
-          <p>Encuentra los episodios y escucha el programa desde nuestra página del podcast.</p>
-        </div>
+      <div class="container narrow">
+        <span class="eyebrow">ESCUCHA EL PROGRAMA</span>
+        <h2>Tu podcast taurino</h2>
+        <p class="lead">Encuentra los episodios y escucha <strong>Hasta el Rabo Todo es Toro</strong> desde nuestra página del podcast.</p>
         <div class="listen-card">
-          <div>
-            <h3>Hasta el Rabo Todo es Toro</h3>
+          <div class="mic-icon" aria-hidden="true">🎙️</div>
+          <div class="listen-copy">
+            <h3>Todos los episodios</h3>
             <p>Accede a los episodios, novedades y contenido del programa.</p>
           </div>
-          <a class="button" href="https://anchor.fm/hastaelrabo" target="_blank" rel="noopener">Ir al podcast</a>
+          <a class="button button-secondary" href="https://anchor.fm/hastaelrabo" target="_blank" rel="noopener">Ir al podcast</a>
         </div>
       </div>
     </section>
 
-    <section id="sobre" class="section section-alt">
-      <div class="container about">
+    <section id="conoce" class="section about-section">
+      <div class="container about-grid">
         <div>
           <span class="eyebrow">CONOCE MÁS</span>
-          <h2>Hasta el Rabo Todo es Toro</h2>
+          <h2>Hasta el Rabo<br>Todo es Toro</h2>
         </div>
-        <p>Este es el nuevo programa de radio taurino semanal de actualidad taurina. De la mano del periodista Manolo Guillén, con la colaboración de Cándido Martínez. Información, opinión, entrevistas y nuestras secciones habituales.</p>
+        <div class="about-copy">
+          <p>Este es el nuevo programa de radio taurino semanal de actualidad taurina. De la mano del periodista Manolo Guillén, con la colaboración de Cándido Martínez. Información, opinión, entrevistas y nuestras secciones habituales.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container cta-inner">
+        <div>
+          <span class="eyebrow">NO TE LO PIERDAS</span>
+          <h2>Escucha el programa</h2>
+        </div>
+        <a class="button button-white" href="https://anchor.fm/hastaelrabo" target="_blank" rel="noopener">Abrir el podcast</a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="container">
-      <img src="logo.jpg" alt="" class="footer-logo">
-      <p>© <span id="year"></span> Hasta el Rabo Todo es Toro</p>
+      <p class="footer-title">Hasta el Rabo Todo es Toro</p>
+      <p>© <span id="year"></span> · Podcast taurino</p>
       <a href="https://anchor.fm/hastaelrabo" target="_blank" rel="noopener">anchor.fm/hastaelrabo</a>
     </div>
   </footer>
