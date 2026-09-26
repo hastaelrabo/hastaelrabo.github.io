@@ -1,4 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-<rect width="64" height="64" rx="14" fill="#0b0b0b"/>
-<text x="32" y="46" text-anchor="middle" font-size="38">🐂</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="12" fill="#111"/><path d="M11 23c7-8 14-8 21 0 7-8 14-8 21 0-4 1-7 4-8 8 2 4 2 10-1 14H20c-3-4-3-10-1-14-1-4-4-7-8-8Z" fill="#d8a83e"/><circle cx="25" cy="33" r="2.5" fill="#111"/><circle cx="39" cy="33" r="2.5" fill="#111"/></svg>
