@@ -1,7 +1,7 @@
 # Hasta el Rabo Todo es Toro — web
 
-Web estática preparada para GitHub Pages.
+Web estática para GitHub Pages.
 
-Archivos principales: `index.html`, `styles.css`, `script.js`, `logo.jpg` y `favicon.svg`.
+Los episodios se actualizan automáticamente desde el RSS de Spotify/Anchor mediante GitHub Actions. El feed utilizado es `https://anchor.fm/s/dae0736c/podcast/rss`.
 
-El botón de Spotify enlaza al podcast oficial en Spotify.
+El flujo se ejecuta cada 6 horas y también se puede lanzar manualmente desde **Actions → Actualizar episodios del podcast → Run workflow**.
