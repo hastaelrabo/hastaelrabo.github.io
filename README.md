@@ -1,12 +1,7 @@
-# Hasta el Rabo Todo es Toro — web con logotipo
+# Hasta el Rabo Todo es Toro — web
 
-Esta versión incorpora el logotipo facilitado por el programa como `logo.jpg`.
+Web estática preparada para GitHub Pages.
 
-Archivos principales:
-- `index.html`
-- `styles.css`
-- `script.js`
-- `logo.jpg`
-- `favicon.svg`
+Archivos principales: `index.html`, `styles.css`, `script.js`, `logo.jpg` y `favicon.svg`.
 
-Para actualizar tu GitHub Pages, sube/reemplaza estos archivos en la raíz del repositorio y haz **Commit changes**.
+El botón de Spotify enlaza al podcast oficial en Spotify.
