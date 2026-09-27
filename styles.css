@@ -80,3 +80,25 @@ text-decoration: none;
 .all-episodes-link:hover {
 text-decoration: underline;
 }
+.episodes-archive-button {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.episodes-archive-button a {
+  display: inline-block;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  border-radius: 999px;
+  background: #5b2a86;
+  color: #fff;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.episodes-archive-button a:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
