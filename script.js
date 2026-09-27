@@ -21,7 +21,9 @@ function escapeHtml(value = '') {
 
 function formatDate(value) {
 
-  if (!value) return '';
+  if (!value) {
+    return '';
+  }
 
   const date = new Date(value);
 
@@ -47,7 +49,9 @@ function cleanDescription(value) {
 
 function renderEpisodes(data) {
 
-  if (!episodesEl) return;
+  if (!episodesEl) {
+    return;
+  }
 
 
   const allEpisodes = Array.isArray(data.episodes)
@@ -55,16 +59,21 @@ function renderEpisodes(data) {
     : [];
 
 
+  /*
+   * Comprobamos si estamos en la página
+   * de "Todos los episodios".
+   */
+
   const showAll =
     document.body.getAttribute('data-all-episodes') === 'true';
 
 
   /*
    * PORTADA:
-   * mostramos solamente los 5 episodios más recientes.
+   * solamente los 5 episodios más recientes.
    *
-   * PÁGINA DE TODOS LOS EPISODIOS:
-   * mostramos todos los episodios.
+   * TODOS LOS EPISODIOS:
+   * mostramos todos.
    */
 
   const episodes = showAll
@@ -90,8 +99,8 @@ function renderEpisodes(data) {
     /*
      * DESCRIPCIÓN
      *
-     * Portada: 100 caracteres.
-     * Todos los episodios: 50 caracteres.
+     * Portada: máximo 100 caracteres.
+     * Todos los episodios: máximo 50 caracteres.
      */
 
     const description = cleanDescription(
@@ -112,7 +121,7 @@ function renderEpisodes(data) {
 
 
     /*
-     * IMAGEN
+     * IMAGEN DEL EPISODIO
      */
 
     const image = ep.image
@@ -144,7 +153,7 @@ function renderEpisodes(data) {
 
 
     /*
-     * ETIQUETA
+     * ETIQUETA DEL EPISODIO
      */
 
     const label =
@@ -166,7 +175,9 @@ function renderEpisodes(data) {
         }"
       >
 
+
         <div class="episode-top">
+
 
           <div class="episode-cover">
 
@@ -177,9 +188,11 @@ function renderEpisodes(data) {
 
           <div class="episode-meta">
 
+
             <span class="episode-label">
               ${label}
             </span>
+
 
             <time
               datetime="${escapeHtml(ep.date || '')}"
@@ -189,11 +202,15 @@ function renderEpisodes(data) {
               )}
             </time>
 
+
             ${duration}
+
 
           </div>
 
+
         </div>
+
 
 
         <h3>
@@ -201,6 +218,7 @@ function renderEpisodes(data) {
             ep.title || 'Episodio'
           )}
         </h3>
+
 
 
         ${
@@ -214,6 +232,7 @@ function renderEpisodes(data) {
             `
             : ''
         }
+
 
 
         ${
@@ -236,7 +255,9 @@ function renderEpisodes(data) {
         }
 
 
+
         <div class="episode-links">
+
 
           ${
             ep.link
@@ -270,7 +291,9 @@ function renderEpisodes(data) {
             iVoox ↗
           </a>
 
+
         </div>
+
 
       </article>
     `;
@@ -279,8 +302,12 @@ function renderEpisodes(data) {
 }
 
 
+
 /*
  * CARGAR EPISODIOS
+ *
+ * Usamos Date.now() para evitar que el navegador
+ * utilice una versión antigua de episodes.json.
  */
 
 if (episodesEl) {
@@ -327,9 +354,11 @@ if (episodesEl) {
             No se han podido cargar los episodios.
           </strong>
 
+
           <span>
 
             Puedes escucharlos en
+
 
             <a
               href="https://open.spotify.com/s/gckqUoL"
@@ -339,7 +368,9 @@ if (episodesEl) {
               Spotify
             </a>
 
+
             o
+
 
             <a
               href="https://www.ivoox.com/podcast-hasta-el-rabo-todo-es-toro_sq_f11846541_amp_1.html"
@@ -348,6 +379,7 @@ if (episodesEl) {
             >
               iVoox
             </a>.
+
 
           </span>
 
