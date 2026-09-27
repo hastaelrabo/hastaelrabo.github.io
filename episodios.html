@@ -1,281 +1,64 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todos los episodios</title>
 
-<title>Todos los episodios - Hasta el Rabo Todo es Toro</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      font-family: Arial, sans-serif;
+      background: white;
+      color: #222;
+      text-align: center;
+    }
 
-<style>
-body {
-  margin: 0;
-  background: #fff;
-  color: #222;
-  font-family: Arial, sans-serif;
-}
+    h1 {
+      color: #5b2a86;
+      font-size: 32px;
+    }
 
-header {
-  padding: 35px 20px;
-  background: #f5eee5;
-  text-align: center;
-}
+    .prueba {
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      border: 2px solid #5b2a86;
+      border-radius: 12px;
+    }
 
-header h1 {
-  margin: 0 0 15px;
-  font-size: 36px;
-}
-
-header a {
-  display: inline-block;
-  padding: 10px 18px;
-  background: #5b2a86;
-  color: white;
-  text-decoration: none;
-  border-radius: 25px;
-  font-weight: bold;
-}
-
-#episodes {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 30px 20px 60px;
-}
-
-.episode {
-  display: flex;
-  align-items: flex-start;
-  gap: 15px;
-  padding: 15px 0;
-  border-bottom: 1px solid #ddd;
-}
-
-.episode img {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 8px;
-  flex-shrink: 0;
-}
-
-.info {
-  flex: 1;
-  min-width: 0;
-}
-
-.number {
-  color: #5b2a86;
-  font-size: 12px;
-  font-weight: bold;
-}
-
-.title {
-  margin-top: 4px;
-  font-size: 15px;
-  font-weight: bold;
-  line-height: 1.35;
-}
-
-.date {
-  margin-top: 5px;
-  color: #888;
-  font-size: 11px;
-}
-
-audio {
-  display: block;
-  width: 100%;
-  margin-top: 10px;
-  height: 40px;
-}
-
-.loading {
-  padding: 50px;
-  text-align: center;
-  color: #777;
-}
-
-.error {
-  margin: 30px 0;
-  padding: 20px;
-  background: #f8dddd;
-  color: #8a2222;
-  border-radius: 8px;
-}
-
-@media (max-width: 600px) {
-
-  header h1 {
-    font-size: 30px;
-  }
-
-  .episode {
-    gap: 10px;
-  }
-
-  .episode img {
-    width: 65px;
-    height: 65px;
-  }
-
-  .title {
-    font-size: 13px;
-  }
-
-  audio {
-    height: 36px;
-  }
-}
-</style>
+    a {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 20px;
+      background: #5b2a86;
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
+  <div class="prueba">
 
-  <h1>Todos los episodios</h1>
+    <h1>Todos los episodios</h1>
 
-  <a href="index.html#episodios">
-    ← Volver a los últimos episodios
-  </a>
+    <p>
+      ESTA ES UNA PRUEBA
+    </p>
 
-</header>
+    <p>
+      Si puedes ver este texto, la página funciona correctamente.
+    </p>
 
+    <a href="index.html">
+      Volver a la página principal
+    </a>
 
-<div id="episodes">
-
-  <div class="loading">
-    Cargando episodios...
   </div>
 
-</div>
-
-
-<script>
-
-const container = document.getElementById("episodes");
-
-fetch("./episodes.json?v=" + Date.now())
-
-  .then(function(response) {
-
-    if (!response.ok) {
-      throw new Error("No se pudo cargar episodes.json");
-    }
-
-    return response.json();
-
-  })
-
-  .then(function(data) {
-
-    if (!data || !Array.isArray(data.episodes)) {
-      throw new Error("No se encontraron episodios");
-    }
-
-    let html = "";
-
-    data.episodes.forEach(function(ep) {
-
-      let originalTitle = ep.title || "Episodio";
-
-      let title = originalTitle.replace(
-        /^\s*T\s*\d+\s*E\s*\d+\s*/i,
-        ""
-      );
-
-      if (title.length > 50) {
-        title = title.substring(0, 50).trim() + "…";
-      }
-
-      let season = "";
-      let episode = "";
-
-      const seasonMatch =
-        originalTitle.match(/T\s*(\d+)/i);
-
-      const episodeMatch =
-        originalTitle.match(/E\s*(\d+)/i);
-
-      if (seasonMatch) {
-        season = seasonMatch[1];
-      }
-
-      if (episodeMatch) {
-        episode = episodeMatch[1];
-      }
-
-      let date = "";
-
-      if (ep.date) {
-
-        const d = new Date(ep.date);
-
-        if (!isNaN(d.getTime())) {
-
-          date = d.toLocaleDateString(
-            "es-ES",
-            {
-              day: "numeric",
-              month: "long",
-              year: "numeric"
-            }
-          );
-
-        }
-
-      }
-
-
-      let image = "";
-
-      if (ep.image) {
-
-        image =
-          '<img src="' +
-          ep.image +
-          '" alt="" loading="lazy">';
-
-      } else {
-
-        image =
-          '<div style="width:80px;height:80px;background:#eee;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#5b2a86;font-weight:bold;">HRT</div>';
-
-      }
-
-
-      let player = "";
-
-      if (ep.audio) {
-
-        player =
-          '<audio controls preload="none" src="' +
-          ep.audio +
-          '"></audio>';
-
-      }
-
-
-      html +=
-
-        '<div class="episode">' +
-
-          image +
-
-          '<div class="info">' +
-
-            '<div class="number">' +
-              'T' + season +
-              (episode ? ' E' + episode : '') +
-            '</div>' +
-
-            '<div class="title">' +
-              title +
-            '</div>' +
-
-            '<div class="date">' +
-              date +
-            '</div>' +
-
-            player +
-
-          '</div>' +
+</body>
+</html>
