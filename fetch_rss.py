@@ -8,7 +8,7 @@ from pathlib import Path
 
 RSS_URL = 'https://anchor.fm/s/dae0736c/podcast/rss'
 OUT = Path('episodes.json')
-LIMIT = 12
+LIMIT = 100
 
 req = urllib.request.Request(RSS_URL, headers={'User-Agent': 'HastaElRaboWeb/1.0'})
 with urllib.request.urlopen(req, timeout=30) as response:
