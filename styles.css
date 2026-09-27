@@ -68,3 +68,15 @@ footer{background:#fff;border-top:1px solid var(--line);padding:22px 0}.footer-i
 .ivoox .platform-icon{background:#ff8c00;color:#fff;font-size:13px}
 @media(max-width:820px){.episodes-grid{grid-template-columns:1fr}.episode-card.episode-featured{grid-column:auto}.platform-grid-3{grid-template-columns:1fr}}
 @media(max-width:720px){.episodes-section{padding:48px 0}.episode-heading{display:block;text-align:left}.rss-note{text-align:left;margin-top:12px}.episode-card{padding:17px;border-radius:15px}.episode-featured h3,.episode-card h3{font-size:21px}.episode-cover{width:64px;height:64px;flex-basis:64px}.episode-card p{font-size:13px}.episode-links{gap:10px}}
+.all-episodes-link {
+display: inline-block;
+font-size: 1.15rem;
+font-weight: 800;
+letter-spacing: 0.04em;
+text-transform: uppercase;
+text-decoration: none;
+}
+
+.all-episodes-link:hover {
+text-decoration: underline;
+}
