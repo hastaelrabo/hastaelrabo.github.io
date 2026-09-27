@@ -23,7 +23,7 @@ req = urllib.request.Request(
     }
 )
 
-with urllib.request.urlopen(req, timeout=60) as response:
+with urllib.request.urlopen(RSS_URL, timeout=60) as response:
     data = response.read()
 
 
@@ -38,9 +38,7 @@ channel = root.find('channel')
 if channel is None:
     raise RuntimeError('No se encontró el canal RSS')
 
-
 items = channel.findall('item')
-
 
 print(f'Episodios encontrados en el RSS: {len(items)}')
 
@@ -50,7 +48,6 @@ print(f'Episodios encontrados en el RSS: {len(items)}')
 # --------------------------------------------------
 
 def text(el, tag, default=''):
-
     child = el.find(tag)
 
     if child is not None and child.text:
@@ -60,7 +57,6 @@ def text(el, tag, default=''):
 
 
 def strip_html(value):
-
     value = re.sub(
         r'<br\s*/?>',
         '\n',
@@ -78,10 +74,120 @@ def strip_html(value):
 
 
 def iso_date(value):
-
     if not value:
         return ''
 
     try:
+        return parsedate_to_datetime(
+            value
+        ).astimezone(
+            timezone.utc
+        ).isoformat()
 
-        return parsedate_to_datetime
+    except Exception:
+        return value
+
+
+# --------------------------------------------------
+# CREAR LISTA DE EPISODIOS
+# --------------------------------------------------
+
+episodes = []
+
+
+for item in items:
+
+    enclosure = item.find('enclosure')
+
+    audio = ''
+
+    if enclosure is not None:
+        audio = enclosure.attrib.get(
+            'url',
+            ''
+        )
+
+    # Ignorar elementos que no tengan audio
+    if not audio:
+        continue
+
+    title = text(
+        item,
+        'title',
+        'Episodio'
+    )
+
+    description = text(
+        item,
+        'description'
+    )
+
+    duration = text(
+        item,
+        '{http://www.itunes.com/dtds/podcast-1.0.dtd}duration'
+    )
+
+
+    # --------------------------------------------------
+    # IMAGEN
+    # --------------------------------------------------
+
+    image_url = ''
+
+    image = item.find(
+        '{http://www.itunes.com/dtds/podcast-1.0.dtd}image'
+    )
+
+    if image is not None:
+
+        image_url = image.attrib.get(
+            'href',
+            ''
+        )
+
+        if not image_url:
+            image_url = image.attrib.get(
+                'url',
+                ''
+            )
+
+
+    # Si no tiene imagen propia,
+    # utilizar la imagen general del podcast.
+
+    if not image_url:
+
+        channel_image = channel.find(
+            '{http://www.itunes.com/dtds/podcast-1.0.dtd}image'
+        )
+
+        if channel_image is not None:
+
+            image_url = channel_image.attrib.get(
+                'href',
+                ''
+            )
+
+            if not image_url:
+                image_url = channel_image.attrib.get(
+                    'url',
+                    ''
+                )
+
+
+    # --------------------------------------------------
+    # RESTO DE DATOS
+    # --------------------------------------------------
+
+    link = text(
+        item,
+        'link'
+    )
+
+    guid = text(
+        item,
+        'guid',
+        audio
+    )
+
+   
