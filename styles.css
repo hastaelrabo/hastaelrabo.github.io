@@ -160,3 +160,38 @@ h2 em{
   justify-content:center;
   align-items:center;
   gap
+/* Tamaño de las imágenes de los episodios en la portada */
+.episode-cover{
+  width:140px;
+  flex:0 0 140px;
+}
+
+.episode-cover img{
+  display:block;
+  width:100%;
+  height:140px;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+.episode-top{
+  display:flex;
+  align-items:flex-start;
+  gap:18px;
+}
+
+/* En móviles, imágenes todavía más pequeñas */
+@media (max-width:600px){
+  .episode-cover{
+    width:100px;
+    flex:0 0 100px;
+  }
+
+  .episode-cover img{
+    height:100px;
+  }
+
+  .episode-top{
+    gap:12px;
+  }
+}
