@@ -17,7 +17,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Actualizar episodes.json desde el RSS
-        run: python3 scripts/fetch_rss.py
+        run: python3 fetch_rss.py
 
       - name: Guardar cambios si hay episodios nuevos
         run: |
