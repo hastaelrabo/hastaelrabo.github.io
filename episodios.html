@@ -3,18 +3,11 @@
 
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <title>
-    Todos los episodios | Hasta el Rabo Todo es Toro
-  </title>
+  <title>Todos los episodios | Hasta el Rabo Todo es Toro</title>
 
   <style>
-
     * {
       box-sizing: border-box;
     }
@@ -158,48 +151,33 @@
       audio {
         height: 40px;
       }
-
     }
-
   </style>
-
 </head>
-
 
 <body>
 
   <main class="page">
 
-    <a
-      class="back"
-      href="./index.html"
-    >
+    <a class="back" href="./index.html">
       ← Volver a la portada
     </a>
 
-
-    <h1>
-      Todos los episodios
-    </h1>
-
+    <h1>Todos los episodios</h1>
 
     <p class="subtitle">
       Hasta el Rabo Todo es Toro
     </p>
 
-
     <div id="status">
       Cargando episodios…
     </div>
-
 
     <div id="episodes"></div>
 
   </main>
 
-
   <script>
-
     (function () {
 
       var status =
@@ -422,4 +400,42 @@
 
             } catch (error) {
 
-             
+              status.innerHTML =
+                '<div class="error">' +
+                '<strong>Error leyendo episodes.json</strong><br>' +
+                escapeHtml(
+                  error.message
+                ) +
+                '</div>';
+
+            }
+
+          };
+
+
+        request.onerror =
+          function () {
+
+            status.innerHTML =
+              '<div class="error">' +
+              '<strong>No se pudo conectar con episodes.json.</strong>' +
+              '<br><br>' +
+              'Comprueba que el archivo esté publicado en GitHub Pages.' +
+              '</div>';
+
+          };
+
+
+        request.send();
+
+      }
+
+
+      loadEpisodes();
+
+    })();
+  </script>
+
+</body>
+
+</html>
