@@ -9,10 +9,11 @@ const episodesEl = document.getElementById('episodes');
 
 
 /* =========================================================
-   FUNCIONES GENERALES
+   FUNCIONES
    ========================================================= */
 
 function escapeHtml(value = '') {
+
   return String(value).replace(/[&<>'"]/g, char => ({
     '&': '&amp;',
     '<': '&lt;',
@@ -20,6 +21,7 @@ function escapeHtml(value = '') {
     "'": '&#39;',
     '"': '&quot;'
   }[char]));
+
 }
 
 
@@ -40,58 +42,46 @@ function formatDate(value) {
     month: 'long',
     year: 'numeric'
   }).format(date);
-}
 
-
-function cleanDescription(value) {
-  return String(value)
-    .replace(/\s+/g, ' ')
-    .trim();
 }
 
 
 /* =========================================================
-   DETECTAR TEMPORADA
+   TEMPORADA
    ========================================================= */
 
 function getSeason(title = '') {
 
-  const text = String(title);
-
-  const match = text.match(
+  const match = String(title).match(
     /\bT(?:emporada)?\s*(\d+)\b/i
   );
 
-  if (match) {
-    return parseInt(match[1], 10);
-  }
+  return match
+    ? parseInt(match[1], 10)
+    : 0;
 
-  return 0;
 }
 
 
 /* =========================================================
-   DETECTAR NÚMERO DE EPISODIO
+   NÚMERO DE EPISODIO
    ========================================================= */
 
 function getEpisodeNumber(title = '') {
 
-  const text = String(title);
-
-  const match = text.match(
+  const match = String(title).match(
     /\bE(?:pisodio)?\s*(\d+)\b/i
   );
 
-  if (match) {
-    return parseInt(match[1], 10);
-  }
+  return match
+    ? parseInt(match[1], 10)
+    : 0;
 
-  return 0;
 }
 
 
 /* =========================================================
-   QUITAR T4 E30 DEL TÍTULO
+   TÍTULO SIN T4 E30
    ========================================================= */
 
 function cleanEpisodeTitle(title = '') {
@@ -107,101 +97,138 @@ function cleanEpisodeTitle(title = '') {
 
 
 /* =========================================================
-   CREAR FILA COMPACTA
+   PRIMEROS 50 CARACTERES
    ========================================================= */
 
-function createArchiveEpisode(ep) {
+function shortTitle(title = '') {
 
-  const season = getSeason(ep.title);
+  const text = String(title).trim();
 
-  const episodeNumber = getEpisodeNumber(ep.title);
+  if (text.length <= 50) {
+    return text;
+  }
 
-  const cleanTitle = cleanEpisodeTitle(ep.title);
+  return text.substring(0, 50).trimEnd() + '…';
 
-  const date = formatDate(ep.date);
-
-  const duration = ep.duration
-    ? ` · ${escapeHtml(ep.duration)}`
-    : '';
-
-  const episodeLabel =
-    season
-      ? `T${season} E${episodeNumber}`
-      : 'EPISODIO';
-
-
-  return `
-    <article class="archive-episode">
-
-      <div class="archive-episode-main">
-
-        <div class="archive-episode-number">
-          ${escapeHtml(episodeLabel)}
-        </div>
-
-        <div class="archive-episode-info">
-
-          <h2>
-            ${escapeHtml(cleanTitle || ep.title || 'Episodio')}
-          </h2>
-
-          <div class="archive-episode-meta">
-
-            <time datetime="${escapeHtml(ep.date || '')}">
-              ${escapeHtml(date)}
-            </time>
-
-            ${duration}
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="archive-episode-action">
-
-        ${
-          ep.audio
-            ? `
-              <a
-                class="archive-listen"
-                href="${escapeHtml(ep.audio)}"
-                target="_blank"
-                rel="noopener"
-              >
-                ESCUCHAR
-              </a>
-            `
-            : ''
-        }
-
-        ${
-          ep.link
-            ? `
-              <a
-                class="archive-external"
-                href="${escapeHtml(ep.link)}"
-                target="_blank"
-                rel="noopener"
-                aria-label="Abrir episodio"
-              >
-                ↗
-              </a>
-            `
-            : ''
-        }
-
-      </div>
-
-    </article>
-  `;
 }
 
 
 /* =========================================================
-   ARCHIVO COMPLETO AGRUPADO POR TEMPORADAS
+   CREAR UN EPISODIO COMPACTO
+   ========================================================= */
+
+function createCompactEpisode(ep) {
+
+  const season = getSeason(ep.title);
+
+  const number = getEpisodeNumber(ep.title);
+
+  const originalTitle =
+    cleanEpisodeTitle(ep.title || 'Episodio');
+
+  const title =
+    shortTitle(originalTitle);
+
+
+  const label =
+    season > 0
+      ? `T${season} E${number}`
+      : 'EPISODIO';
+
+
+  const image = ep.image
+    ? `
+      <img
+        src="${escapeHtml(ep.image)}"
+        alt=""
+        loading="lazy"
+      >
+    `
+    : `
+      <div class="compact-episode-placeholder">
+        HRT
+      </div>
+    `;
+
+
+  return `
+
+    <article class="compact-episode">
+
+
+      <div class="compact-episode-image">
+
+        ${image}
+
+      </div>
+
+
+      <div class="compact-episode-content">
+
+
+        <div class="compact-episode-title">
+
+          <span class="compact-episode-number">
+            ${escapeHtml(label)}
+          </span>
+
+          <span class="compact-episode-name">
+            ${escapeHtml(title)}
+          </span>
+
+        </div>
+
+
+        <div class="compact-episode-date">
+
+          ${escapeHtml(formatDate(ep.date))}
+
+        </div>
+
+
+        ${
+          ep.audio
+            ? `
+              <audio
+                class="compact-audio"
+                controls
+                preload="none"
+                src="${escapeHtml(ep.audio)}"
+                aria-label="Reproducir ${escapeHtml(ep.title || 'episodio')}"
+              ></audio>
+            `
+            : ''
+        }
+
+
+      </div>
+
+
+      ${
+        ep.audio
+          ? `
+            <button
+              class="compact-play"
+              type="button"
+              aria-label="Reproducir episodio"
+              title="Reproducir episodio"
+            >
+              <span aria-hidden="true">▶</span>
+            </button>
+          `
+          : ''
+      }
+
+
+    </article>
+
+  `;
+
+}
+
+
+/* =========================================================
+   AGRUPAR POR TEMPORADA
    ========================================================= */
 
 function renderArchive(episodes) {
@@ -220,6 +247,7 @@ function renderArchive(episodes) {
     `;
 
     return;
+
   }
 
 
@@ -256,14 +284,20 @@ function renderArchive(episodes) {
 
     seasonEpisodes.sort((a, b) => {
 
-      const episodeA = getEpisodeNumber(a.title);
-      const episodeB = getEpisodeNumber(b.title);
+      const numberA =
+        getEpisodeNumber(a.title);
 
-      if (episodeA !== episodeB) {
-        return episodeB - episodeA;
+      const numberB =
+        getEpisodeNumber(b.title);
+
+
+      if (numberA !== numberB) {
+        return numberB - numberA;
       }
 
-      return new Date(b.date || 0) - new Date(a.date || 0);
+
+      return new Date(b.date || 0) -
+             new Date(a.date || 0);
 
     });
 
@@ -276,38 +310,32 @@ function renderArchive(episodes) {
 
     html += `
 
-      <section class="archive-season">
+      <section class="compact-season">
 
-        <div class="archive-season-heading">
 
-          <div>
+        <div class="compact-season-heading">
 
-            <span class="archive-season-kicker">
-              TEMPORADA
-            </span>
+          <h2>
+            ${escapeHtml(seasonTitle)}
+          </h2>
 
-            <h2>
-              ${escapeHtml(seasonTitle)}
-            </h2>
-
-          </div>
-
-          <span class="archive-season-count">
+          <span>
             ${seasonEpisodes.length}
-            ${seasonEpisodes.length === 1 ? 'episodio' : 'episodios'}
+            episodios
           </span>
 
         </div>
 
 
-        <div class="archive-season-list">
+        <div class="compact-season-list">
 
           ${seasonEpisodes
-            .map(createArchiveEpisode)
+            .map(createCompactEpisode)
             .join('')
           }
 
         </div>
+
 
       </section>
 
@@ -318,11 +346,128 @@ function renderArchive(episodes) {
 
   episodesEl.innerHTML = html;
 
+
+  /* =======================================================
+     BOTONES PLAY
+     ======================================================= */
+
+  const episodeCards =
+    episodesEl.querySelectorAll(
+      '.compact-episode'
+    );
+
+
+  episodeCards.forEach(card => {
+
+    const audio =
+      card.querySelector('.compact-audio');
+
+    const button =
+      card.querySelector('.compact-play');
+
+
+    if (!audio || !button) {
+      return;
+    }
+
+
+    button.addEventListener('click', () => {
+
+      document
+        .querySelectorAll('.compact-audio')
+        .forEach(otherAudio => {
+
+          if (otherAudio !== audio) {
+            otherAudio.pause();
+          }
+
+        });
+
+
+      if (audio.paused) {
+
+        audio.play()
+          .catch(error => {
+            console.error(
+              'No se pudo reproducir el episodio:',
+              error
+            );
+          });
+
+        button.classList.add(
+          'is-playing'
+        );
+
+        button.innerHTML =
+          '<span aria-hidden="true">Ⅱ</span>';
+
+      } else {
+
+        audio.pause();
+
+        button.classList.remove(
+          'is-playing'
+        );
+
+        button.innerHTML =
+          '<span aria-hidden="true">▶</span>';
+
+      }
+
+    });
+
+
+    audio.addEventListener(
+      'play',
+      () => {
+
+        button.classList.add(
+          'is-playing'
+        );
+
+        button.innerHTML =
+          '<span aria-hidden="true">Ⅱ</span>';
+
+      }
+    );
+
+
+    audio.addEventListener(
+      'pause',
+      () => {
+
+        button.classList.remove(
+          'is-playing'
+        );
+
+        button.innerHTML =
+          '<span aria-hidden="true">▶</span>';
+
+      }
+    );
+
+
+    audio.addEventListener(
+      'ended',
+      () => {
+
+        button.classList.remove(
+          'is-playing'
+        );
+
+        button.innerHTML =
+          '<span aria-hidden="true">▶</span>';
+
+      }
+    );
+
+  });
+
 }
 
 
 /* =========================================================
-   TARJETAS DE LA PORTADA
+   PORTADA
    ========================================================= */
 
 function renderHomeEpisodes(episodes) {
@@ -332,7 +477,8 @@ function renderHomeEpisodes(episodes) {
   }
 
 
-  const recentEpisodes = episodes.slice(0, 5);
+  const recentEpisodes =
+    episodes.slice(0, 5);
 
 
   if (!recentEpisodes.length) {
@@ -344,143 +490,149 @@ function renderHomeEpisodes(episodes) {
     `;
 
     return;
+
   }
 
 
-  episodesEl.innerHTML = recentEpisodes.map((ep, index) => {
+  episodesEl.innerHTML =
+    recentEpisodes.map((ep, index) => {
 
-    const description =
-      cleanDescription(ep.description || '');
+      const image = ep.image
+        ? `
+          <img
+            src="${escapeHtml(ep.image)}"
+            alt=""
+            loading="lazy"
+          >
+        `
+        : `
+          <div class="episode-art">
+            <span>HRT</span>
+          </div>
+        `;
 
 
-    const image = ep.image
-      ? `
-        <img
-          src="${escapeHtml(ep.image)}"
-          alt=""
-          loading="lazy"
+      const label =
+        index === 0
+          ? 'ÚLTIMO EPISODIO'
+          : 'EPISODIO';
+
+
+      return `
+
+        <article
+          class="episode-card ${
+            index === 0
+              ? 'episode-featured'
+              : ''
+          }"
         >
-      `
-      : `
-        <div class="episode-art">
-          <span>HRT</span>
-        </div>
-      `;
 
+          <div class="episode-top">
 
-    const duration = ep.duration
-      ? `<span>${escapeHtml(ep.duration)}</span>`
-      : '';
+            <div class="episode-cover">
+              ${image}
+            </div>
 
+            <div class="episode-meta">
 
-    const label =
-      index === 0
-        ? 'ÚLTIMO EPISODIO'
-        : 'EPISODIO';
+              <span class="episode-label">
+                ${label}
+              </span>
 
+              <time datetime="${escapeHtml(ep.date || '')}">
+                ${escapeHtml(formatDate(ep.date))}
+              </time>
 
-    return `
+              ${
+                ep.duration
+                  ? `<span>${escapeHtml(ep.duration)}</span>`
+                  : ''
+              }
 
-      <article class="episode-card ${index === 0 ? 'episode-featured' : ''}">
-
-        <div class="episode-top">
-
-          <div class="episode-cover">
-            ${image}
-          </div>
-
-          <div class="episode-meta">
-
-            <span class="episode-label">
-              ${label}
-            </span>
-
-            <time datetime="${escapeHtml(ep.date || '')}">
-              ${escapeHtml(formatDate(ep.date))}
-            </time>
-
-            ${duration}
+            </div>
 
           </div>
 
-        </div>
 
+          <h3>
+            ${escapeHtml(ep.title || 'Episodio')}
+          </h3>
 
-        <h3>
-          ${escapeHtml(ep.title || 'Episodio')}
-        </h3>
-
-
-        ${
-          description
-            ? `
-              <p>
-                ${escapeHtml(description).slice(0, 360)}
-                ${description.length > 360 ? '…' : ''}
-              </p>
-            `
-            : ''
-        }
-
-
-        ${
-          ep.audio
-            ? `
-              <div class="episode-player">
-
-                <audio
-                  controls
-                  preload="none"
-                  src="${escapeHtml(ep.audio)}"
-                ></audio>
-
-              </div>
-            `
-            : ''
-        }
-
-
-        <div class="episode-links">
 
           ${
-            ep.link
+            ep.description
               ? `
-                <a
-                  href="${escapeHtml(ep.link)}"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Ver episodio ↗
-                </a>
+                <p>
+                  ${escapeHtml(
+                    String(ep.description)
+                      .replace(/\s+/g, ' ')
+                      .trim()
+                  ).slice(0, 360)}
+                </p>
               `
               : ''
           }
 
 
-          <a
-            href="https://open.spotify.com/s/gckqUoL"
-            target="_blank"
-            rel="noopener"
-          >
-            Spotify ↗
-          </a>
+          ${
+            ep.audio
+              ? `
+                <div class="episode-player">
+
+                  <audio
+                    controls
+                    preload="none"
+                    src="${escapeHtml(ep.audio)}"
+                  ></audio>
+
+                </div>
+              `
+              : ''
+          }
 
 
-          <a
-            href="https://www.ivoox.com/podcast-hasta-el-rabo-todo-es-toro_sq_f11846541_amp_1.html"
-            target="_blank"
-            rel="noopener"
-          >
-            iVoox ↗
-          </a>
+          <div class="episode-links">
 
-        </div>
+            ${
+              ep.link
+                ? `
+                  <a
+                    href="${escapeHtml(ep.link)}"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Ver episodio ↗
+                  </a>
+                `
+                : ''
+            }
 
-      </article>
 
-    `;
+            <a
+              href="https://open.spotify.com/s/gckqUoL"
+              target="_blank"
+              rel="noopener"
+            >
+              Spotify ↗
+            </a>
 
-  }).join('');
+
+            <a
+              href="https://www.ivoox.com/podcast-hasta-el-rabo-todo-es-toro_sq_f11846541_amp_1.html"
+              target="_blank"
+              rel="noopener"
+            >
+              iVoox ↗
+            </a>
+
+          </div>
+
+        </article>
+
+      `;
+
+    }).join('');
 
 }
 
@@ -491,7 +643,10 @@ function renderHomeEpisodes(episodes) {
 
 if (episodesEl) {
 
-  fetch('episodes.json?v=' + Date.now())
+  fetch(
+    'episodes.json?v=' +
+    Date.now()
+  )
 
     .then(response => {
 
@@ -524,11 +679,15 @@ if (episodesEl) {
 
       if (showAll) {
 
-        renderArchive(allEpisodes);
+        renderArchive(
+          allEpisodes
+        );
 
       } else {
 
-        renderHomeEpisodes(allEpisodes);
+        renderHomeEpisodes(
+          allEpisodes
+        );
 
       }
 
@@ -547,28 +706,8 @@ if (episodesEl) {
 
         <div class="archive-loading">
 
-          <strong>
-            No se han podido cargar los episodios.
-          </strong>
-
-          <p>
-            Puedes escucharlos en
-            <a
-              href="https://open.spotify.com/s/gckqUoL"
-              target="_blank"
-              rel="noopener"
-            >
-              Spotify
-            </a>
-            o
-            <a
-              href="https://www.ivoox.com/podcast-hasta-el-rabo-todo-es-toro_sq_f11846541_amp_1.html"
-              target="_blank"
-              rel="noopener"
-            >
-              iVoox
-            </a>.
-          </p>
+          No se han podido cargar
+          los episodios.
 
         </div>
 
