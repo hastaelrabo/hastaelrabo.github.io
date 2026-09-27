@@ -401,3 +401,321 @@ text-decoration: underline;
   }
 
 }
+/* =========================================================
+   ARCHIVO SIMPLE DE TODOS LOS EPISODIOS
+   ========================================================= */
+
+.archive-simple-header {
+  padding: 4.5rem 0 3rem;
+  background: #f7f1e8;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.archive-simple-header h1 {
+  margin: 0;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+}
+
+.archive-simple-intro {
+  max-width: 650px;
+  margin: 1.25rem 0 1.75rem;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(0, 0, 0, 0.65);
+}
+
+.archive-back {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.7rem 1rem;
+  border-radius: 999px;
+  background: #5b2a86;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.archive-back:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+
+/* =========================================================
+   CONTENEDOR DEL ARCHIVO
+   ========================================================= */
+
+.archive-list-section {
+  padding: 3.5rem 0 5rem;
+}
+
+.archive-list {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   TEMPORADAS
+   ========================================================= */
+
+.archive-season {
+  margin-bottom: 4rem;
+}
+
+.archive-season-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.9rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 2px solid #5b2a86;
+}
+
+.archive-season-kicker {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: #5b2a86;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+}
+
+.archive-season-heading h2 {
+  margin: 0;
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.archive-season-count {
+  flex-shrink: 0;
+  padding-bottom: 0.2rem;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   LISTADO
+   ========================================================= */
+
+.archive-season-list {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   CADA EPISODIO
+   ========================================================= */
+
+.archive-episode {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  min-height: 76px;
+  padding: 0.9rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.09);
+  transition:
+    background 0.2s ease,
+    padding 0.2s ease;
+}
+
+.archive-episode:hover {
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+  background: #faf7fb;
+}
+
+
+/* =========================================================
+   PARTE IZQUIERDA
+   ========================================================= */
+
+.archive-episode-main {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.archive-episode-number {
+  flex-shrink: 0;
+  width: 72px;
+  color: #5b2a86;
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.archive-episode-info {
+  min-width: 0;
+}
+
+.archive-episode-info h2 {
+  margin: 0 0 0.25rem;
+  overflow: hidden;
+  font-size: 1rem;
+  font-weight: 750;
+  line-height: 1.3;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.archive-episode-meta {
+  color: rgba(0, 0, 0, 0.48);
+  font-size: 0.75rem;
+  line-height: 1.3;
+}
+
+
+/* =========================================================
+   BOTONES
+   ========================================================= */
+
+.archive-episode-action {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.archive-listen {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.48rem 0.75rem;
+  border-radius: 999px;
+  background: #5b2a86;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.archive-listen:hover {
+  transform: translateY(-1px);
+  opacity: 0.88;
+}
+
+.archive-external {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: #f0ebf2;
+  color: #5b2a86;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   CARGANDO / ERROR
+   ========================================================= */
+
+.archive-loading {
+  padding: 3rem 1rem;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.archive-loading a {
+  color: #5b2a86;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 700px) {
+
+  .archive-simple-header {
+    padding: 3.2rem 0 2.5rem;
+  }
+
+  .archive-simple-header h1 {
+    font-size: clamp(2.7rem, 14vw, 4rem);
+  }
+
+  .archive-simple-intro {
+    font-size: 0.95rem;
+  }
+
+  .archive-list-section {
+    padding: 2.5rem 0 4rem;
+  }
+
+  .archive-season {
+    margin-bottom: 3rem;
+  }
+
+  .archive-season-heading {
+    align-items: center;
+  }
+
+  .archive-season-heading h2 {
+    font-size: 1.7rem;
+  }
+
+  .archive-season-count {
+    font-size: 0.7rem;
+  }
+
+  .archive-episode {
+    min-height: 68px;
+    gap: 0.6rem;
+  }
+
+  .archive-episode-main {
+    gap: 0.65rem;
+  }
+
+  .archive-episode-number {
+    width: 58px;
+    font-size: 0.72rem;
+  }
+
+  .archive-episode-info h2 {
+    font-size: 0.88rem;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .archive-episode-meta {
+    font-size: 0.68rem;
+  }
+
+  .archive-listen {
+    padding: 0.45rem 0.6rem;
+    font-size: 0.62rem;
+  }
+
+  .archive-external {
+    width: 27px;
+    height: 27px;
+  }
+
+}
