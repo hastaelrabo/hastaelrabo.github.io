@@ -102,3 +102,302 @@ text-decoration: underline;
   transform: translateY(-2px);
   opacity: 0.9;
 }
+/* =========================================================
+   ARCHIVO COMPLETO DE EPISODIOS
+   ========================================================= */
+
+.archive-hero {
+  padding: 5rem 0 4rem;
+  background: linear-gradient(
+    135deg,
+    #f7f1e8 0%,
+    #fffaf3 55%,
+    #f2e8f5 100%
+  );
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.archive-hero .kicker {
+  margin-bottom: 0.75rem;
+}
+
+.archive-hero h1 {
+  margin: 0;
+  font-size: clamp(3rem, 7vw, 6rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+}
+
+.archive-intro {
+  max-width: 680px;
+  margin: 1.5rem 0 2rem;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: rgba(0, 0, 0, 0.68);
+}
+
+.archive-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  border-radius: 999px;
+  background: #5b2a86;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.archive-back:hover {
+  transform: translateY(-2px);
+  opacity: 0.9;
+}
+
+
+/* =========================================================
+   ZONA DEL ARCHIVO
+   ========================================================= */
+
+.archive-section {
+  padding: 4rem 0 6rem;
+}
+
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+
+/* =========================================================
+   TARJETAS
+   ========================================================= */
+
+.archive-grid .episode-card {
+  position: relative;
+  overflow: hidden;
+  padding: 1.35rem;
+  border-radius: 22px;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.archive-grid .episode-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.1);
+}
+
+
+/* =========================================================
+   EPISODIO DESTACADO
+   ========================================================= */
+
+.archive-grid .episode-featured {
+  grid-column: 1 / -1;
+  background: linear-gradient(
+    135deg,
+    #fff 0%,
+    #faf4ff 100%
+  );
+  border: 2px solid rgba(91, 42, 134, 0.2);
+}
+
+
+/* =========================================================
+   CABECERA DE CADA TARJETA
+   ========================================================= */
+
+.archive-grid .episode-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.archive-grid .episode-cover {
+  width: 82px;
+  min-width: 82px;
+  height: 82px;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #eee;
+}
+
+.archive-grid .episode-cover img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.archive-grid .episode-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 0.8rem;
+}
+
+.archive-grid .episode-label {
+  padding: 0.35rem 0.65rem;
+  border-radius: 999px;
+  background: #5b2a86;
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.archive-grid time,
+.archive-grid .episode-meta > span:not(.episode-label) {
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+
+/* =========================================================
+   TÍTULOS
+   ========================================================= */
+
+.archive-grid .episode-card h3 {
+  margin: 0 0 0.7rem;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.archive-grid .episode-featured h3 {
+  font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+
+/* =========================================================
+   DESCRIPCIÓN
+   ========================================================= */
+
+.archive-grid .episode-card > p {
+  margin: 0 0 1rem;
+  color: rgba(0, 0, 0, 0.62);
+  font-size: 0.92rem;
+  line-height: 1.55;
+}
+
+
+/* =========================================================
+   REPRODUCTOR
+   ========================================================= */
+
+.archive-grid .episode-player {
+  margin-top: 1rem;
+}
+
+.archive-grid audio {
+  width: 100%;
+  height: 42px;
+}
+
+
+/* =========================================================
+   BOTONES DE ENLACES
+   ========================================================= */
+
+.archive-grid .episode-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1rem;
+}
+
+.archive-grid .episode-links a {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 0.8rem;
+  border-radius: 999px;
+  background: #f1edf4;
+  color: #4b236d;
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 800;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.archive-grid .episode-links a:hover {
+  background: #e6d9ed;
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   CARGANDO
+   ========================================================= */
+
+.archive-grid .loading-card {
+  grid-column: 1 / -1;
+  padding: 3rem;
+  text-align: center;
+  border-radius: 22px;
+  background: #fff;
+}
+
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+  .archive-hero {
+    padding: 3.5rem 0 3rem;
+  }
+
+  .archive-hero h1 {
+    font-size: clamp(2.8rem, 14vw, 4.5rem);
+  }
+
+  .archive-section {
+    padding: 2.5rem 0 4rem;
+  }
+
+  .archive-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .archive-grid .episode-featured {
+    grid-column: auto;
+  }
+
+  .archive-grid .episode-card {
+    padding: 1.1rem;
+    border-radius: 18px;
+  }
+
+  .archive-grid .episode-cover {
+    width: 68px;
+    min-width: 68px;
+    height: 68px;
+  }
+
+  .archive-grid .episode-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .archive-grid .episode-featured h3 {
+    font-size: 1.35rem;
+  }
+
+  .archive-grid .episode-links a {
+    font-size: 0.72rem;
+  }
+
+}
