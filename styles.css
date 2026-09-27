@@ -195,3 +195,45 @@ h2 em{
     gap:12px;
   }
 }
+/* =========================================================
+   IMÁGENES PEQUEÑAS DE LOS EPISODIOS
+   ========================================================= */
+
+.episode-cover{
+  width:90px;
+  flex:0 0 90px;
+}
+
+.episode-cover img{
+  display:block;
+  width:90px;
+  height:90px;
+  object-fit:cover;
+  border-radius:10px;
+}
+
+.episode-top{
+  display:flex;
+  align-items:flex-start;
+  gap:14px;
+}
+
+/* MÓVIL */
+
+@media (max-width:600px){
+
+  .episode-cover{
+    width:70px;
+    flex:0 0 70px;
+  }
+
+  .episode-cover img{
+    width:70px;
+    height:70px;
+  }
+
+  .episode-top{
+    gap:10px;
+  }
+
+}
