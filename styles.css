@@ -242,37 +242,37 @@ h2 em{
   gap:12px;
 }
 
-/* PORTADAS DE LOS EPISODIOS: 50 x 50 PX */
+/* PORTADAS DE LOS EPISODIOS: 60 x 60 PX */
 
 .episode-cover{
-  width:50px !important;
-  height:50px !important;
-  min-width:50px !important;
-  max-width:50px !important;
-  min-height:50px !important;
-  max-height:50px !important;
-  flex:0 0 50px !important;
+  width:60px !important;
+  height:60px !important;
+  min-width:60px !important;
+  max-width:60px !important;
+  min-height:60px !important;
+  max-height:60px !important;
+  flex:0 0 60px !important;
   overflow:hidden;
   border-radius:8px;
 }
 
 .episode-cover img{
   display:block;
-  width:50px !important;
-  height:50px !important;
-  min-width:50px !important;
-  max-width:50px !important;
-  min-height:50px !important;
-  max-height:50px !important;
+  width:60px !important;
+  height:60px !important;
+  min-width:60px !important;
+  max-width:60px !important;
+  min-height:60px !important;
+  max-height:60px !important;
   object-fit:cover;
   border-radius:8px;
 }
 
 .episode-art{
-  width:50px;
-  height:50px;
-  min-width:50px;
-  min-height:50px;
+  width:60px;
+  height:60px;
+  min-width:60px;
+  min-height:60px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -280,7 +280,7 @@ h2 em{
   color:#fff;
   font-family:Georgia,'Times New Roman',serif;
   font-weight:900;
-  font-size:14px;
+  font-size:15px;
 }
 
 .episode-meta{
@@ -593,33 +593,33 @@ footer{
     padding:14px;
   }
 
-  /* TAMBIÉN 50 x 50 PX EN MÓVIL */
+  /* 60 x 60 PX TAMBIÉN EN MÓVIL */
 
   .episode-cover{
-    width:50px !important;
-    height:50px !important;
-    min-width:50px !important;
-    max-width:50px !important;
-    min-height:50px !important;
-    max-height:50px !important;
-    flex:0 0 50px !important;
+    width:60px !important;
+    height:60px !important;
+    min-width:60px !important;
+    max-width:60px !important;
+    min-height:60px !important;
+    max-height:60px !important;
+    flex:0 0 60px !important;
   }
 
   .episode-cover img{
-    width:50px !important;
-    height:50px !important;
-    min-width:50px !important;
-    max-width:50px !important;
-    min-height:50px !important;
-    max-height:50px !important;
+    width:60px !important;
+    height:60px !important;
+    min-width:60px !important;
+    max-width:60px !important;
+    min-height:60px !important;
+    max-height:60px !important;
   }
 
   .episode-art{
-    width:50px;
-    height:50px;
-    min-width:50px;
-    min-height:50px;
-    font-size:13px;
+    width:60px;
+    height:60px;
+    min-width:60px;
+    min-height:60px;
+    font-size:14px;
   }
 
   .episode-top{
