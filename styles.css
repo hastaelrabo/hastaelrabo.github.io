@@ -719,3 +719,294 @@ text-decoration: underline;
   }
 
 }
+/* =========================================================
+   ARCHIVO DE EPISODIOS — DISEÑO COMPACTO
+   ========================================================= */
+
+.archive-compact-header {
+  padding: 3.5rem 0 2.5rem;
+  background: #f7f1e8;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.archive-compact-header h1 {
+  margin: 0;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.archive-back {
+  display: inline-flex;
+  margin-top: 1.25rem;
+  padding: 0.65rem 1rem;
+  border-radius: 999px;
+  background: #5b2a86;
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.archive-compact-section {
+  padding: 2.5rem 0 5rem;
+}
+
+.compact-episodes {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+
+/* =========================================================
+   TEMPORADA
+   ========================================================= */
+
+.compact-season {
+  margin-bottom: 3rem;
+}
+
+.compact-season-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.65rem;
+  border-bottom: 2px solid #5b2a86;
+}
+
+.compact-season-heading h2 {
+  margin: 0;
+  font-size: 1.45rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.compact-season-heading span {
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   EPISODIO
+   ========================================================= */
+
+.compact-episode {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) 44px;
+  align-items: center;
+  gap: 0.9rem;
+  min-height: 88px;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+
+/* =========================================================
+   IMAGEN
+   ========================================================= */
+
+.compact-episode-image {
+  width: 72px;
+  height: 72px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: #eee;
+}
+
+.compact-episode-image img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.compact-episode-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: #eee;
+  color: #5b2a86;
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+
+/* =========================================================
+   TEXTO
+   ========================================================= */
+
+.compact-episode-content {
+  min-width: 0;
+}
+
+.compact-episode-title {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  min-width: 0;
+}
+
+.compact-episode-number {
+  flex-shrink: 0;
+  color: #5b2a86;
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.compact-episode-name {
+  min-width: 0;
+  overflow: hidden;
+  color: #222;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1.3;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.compact-episode-date {
+  margin-top: 0.25rem;
+  color: rgba(0, 0, 0, 0.45);
+  font-size: 0.7rem;
+}
+
+
+/* =========================================================
+   AUDIO REAL
+   ========================================================= */
+
+.compact-audio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   BOTÓN PLAY
+   ========================================================= */
+
+.compact-play {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #5b2a86;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  box-shadow: 0 3px 10px rgba(91, 42, 134, 0.2);
+  transition:
+    transform 0.15s ease,
+    opacity 0.15s ease;
+}
+
+.compact-play:hover {
+  transform: scale(1.06);
+}
+
+.compact-play:active {
+  transform: scale(0.96);
+}
+
+.compact-play:focus-visible {
+  outline: 3px solid rgba(91, 42, 134, 0.3);
+  outline-offset: 3px;
+}
+
+.compact-play.is-playing {
+  font-size: 0.8rem;
+}
+
+
+/* =========================================================
+   CARGANDO
+   ========================================================= */
+
+.archive-loading {
+  padding: 3rem 1rem;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.55);
+}
+
+
+/* =========================================================
+   MÓVIL
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+  .archive-compact-header {
+    padding: 2.75rem 0 2rem;
+  }
+
+  .archive-compact-header h1 {
+    font-size: 2.7rem;
+  }
+
+  .archive-compact-section {
+    padding-top: 2rem;
+  }
+
+  .compact-season {
+    margin-bottom: 2.5rem;
+  }
+
+  .compact-season-heading h2 {
+    font-size: 1.25rem;
+  }
+
+  .compact-episode {
+    grid-template-columns: 58px minmax(0, 1fr) 40px;
+    gap: 0.7rem;
+    min-height: 70px;
+    padding: 0.6rem 0;
+  }
+
+  .compact-episode-image {
+    width: 58px;
+    height: 58px;
+    border-radius: 8px;
+  }
+
+  .compact-episode-title {
+    display: block;
+  }
+
+  .compact-episode-number {
+    display: inline-block;
+    margin-right: 0.35rem;
+  }
+
+  .compact-episode-name {
+    font-size: 0.82rem;
+    white-space: normal;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+
+  .compact-episode-date {
+    font-size: 0.65rem;
+  }
+
+  .compact-play {
+    width: 38px;
+    height: 38px;
+    font-size: 0.8rem;
+  }
+
+}
