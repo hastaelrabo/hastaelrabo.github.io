@@ -1,4 +1,8 @@
-document.getElementById('year').textContent = new Date().getFullYear();
+const yearEl = document.getElementById('year');
+
+if (yearEl) {
+  yearEl.textContent = new Date().getFullYear();
+}
 
 const episodesEl = document.getElementById('episodes');
 
@@ -31,23 +35,26 @@ function cleanDescription(value) {
 }
 
 function renderEpisodes(data) {
-  const allEpisodes = Array.isArray(data?.episodes)
+
+  if (!episodesEl) {
+    return;
+  }
+
+  const allEpisodes = Array.isArray(data.episodes)
     ? data.episodes
     : [];
 
-  /*
-    En la página principal mostramos solo los 5 más recientes.
-    En episodios.html mostramos todos.
-  */
-  const episodes = document.body.dataset.allEpisodes === 'true'
+  const showAll =
+    document.body.getAttribute('data-all-episodes') === 'true';
+
+  const episodes = showAll
     ? allEpisodes
     : allEpisodes.slice(0, 5);
 
   if (!episodes.length) {
     episodesEl.innerHTML = `
       <div class="loading-card">
-        Todavía no hay episodios disponibles.
-        Vuelve a intentarlo en unos minutos.
+        No hay episodios disponibles.
       </div>
     `;
     return;
@@ -65,6 +72,11 @@ function renderEpisodes(data) {
       ? `<span>${escapeHtml(ep.duration)}</span>`
       : '';
 
+    const label =
+      !showAll && index === 0
+        ? 'ÚLTIMO EPISODIO'
+        : 'EPISODIO';
+
     return `
       <article class="episode-card ${index === 0 ? 'episode-featured' : ''}">
 
@@ -77,9 +89,7 @@ function renderEpisodes(data) {
           <div class="episode-meta">
 
             <span class="episode-label">
-              ${index === 0 && document.body.dataset.allEpisodes !== 'true'
-                ? 'ÚLTIMO EPISODIO'
-                : 'EPISODIO'}
+              ${label}
             </span>
 
             <time datetime="${escapeHtml(ep.date || '')}">
@@ -158,48 +168,59 @@ function renderEpisodes(data) {
   }).join('');
 }
 
-fetch('episodes.json?v=' + Date.now())
-  .then(response => {
+if (episodesEl) {
 
-    if (!response.ok) {
-      throw new Error('No se pudo cargar episodes.json');
-    }
+  fetch('episodes.json?v=' + Date.now())
 
-    return response.json();
+    .then(response => {
 
-  })
-  .then(renderEpisodes)
+      if (!response.ok) {
+        throw new Error(
+          'No se pudo cargar episodes.json'
+        );
+      }
 
-  .catch(error => {
+      return response.json();
 
-    console.error(error);
+    })
 
-    episodesEl.innerHTML = `
-      <div class="loading-card error-card">
+    .then(data => {
 
-        <strong>
-          No se han podido cargar los episodios.
-        </strong>
+      renderEpisodes(data);
 
-        <span>
-          La web se actualiza automáticamente desde el RSS.
-          También puedes escucharlos ahora en
-          <a
-            href="https://open.spotify.com/s/gckqUoL"
-            target="_blank"
-            rel="noopener">
-            Spotify
-          </a>
-          o
-          <a
-            href="https://www.ivoox.com/podcast-hasta-el-rabo-todo-es-toro_sq_f11846541_amp_1.html"
-            target="_blank"
-            rel="noopener">
-            iVoox
-          </a>.
-        </span>
+    })
 
-      </div>
-    `;
+    .catch(error => {
 
-  });
+      console.error('Error cargando episodios:', error);
+
+      episodesEl.innerHTML = `
+        <div class="loading-card error-card">
+
+          <strong>
+            No se han podido cargar los episodios.
+          </strong>
+
+          <span>
+            Puedes escucharlos en
+            <a
+              href="https://open.spotify.com/s/gckqUoL"
+              target="_blank"
+              rel="noopener">
+              Spotify
+            </a>
+            o
+            <a
+              href="https://www.ivoox.com/podcast-hasta-el-rabo-todo-es-toro_sq_f11846541_amp_1.html"
+              target="_blank"
+              rel="noopener">
+              iVoox
+            </a>.
+          </span>
+
+        </div>
+      `;
+
+    });
+
+}
