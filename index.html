@@ -30,22 +30,20 @@
     href="styles.css?v=6"
   >
 
-
   <!--
     AJUSTES EXCLUSIVOS DE LA PORTADA
 
-    Las imágenes de los episodios son un poco
-    más grandes aquí, sin modificar episodios.html.
+    Imágenes de tamaño mediano.
+    No afecta a episodios.html.
   -->
 
   <style>
 
     .episodes-grid .episode-cover {
-      width: 100px !important;
-      min-width: 100px !important;
-      height: 100px !important;
+      width: 90px !important;
+      min-width: 90px !important;
+      height: 90px !important;
     }
-
 
     .episodes-grid .episode-cover img {
       width: 100%;
@@ -54,13 +52,12 @@
       display: block;
     }
 
-
     @media (max-width: 600px) {
 
       .episodes-grid .episode-cover {
-        width: 88px !important;
-        min-width: 88px !important;
-        height: 88px !important;
+        width: 82px !important;
+        min-width: 82px !important;
+        height: 82px !important;
       }
 
     }
@@ -80,7 +77,6 @@
   <header class="topbar">
 
     <div class="wrap topbar-inner">
-
 
       <a
         class="brand"
@@ -112,7 +108,6 @@
         </a>
 
       </nav>
-
 
     </div>
 
@@ -246,13 +241,6 @@
         </div>
 
 
-
-        <!--
-          Los episodios se cargan automáticamente
-          desde episodes.json mediante script.js.
-        -->
-
-
         <div
           id="episodes"
           class="episodes-grid"
@@ -310,8 +298,6 @@
         <div class="platform-grid platform-grid-3">
 
 
-          <!-- SPOTIFY -->
-
           <a
             class="platform spotify"
             href="https://open.spotify.com/s/gckqUoL"
@@ -319,5 +305,281 @@
             rel="noopener"
           >
 
+            <div class="platform-icon">
+              ♪
+            </div>
+
+
+            <div>
+
+              <strong>
+                Spotify
+              </strong>
+
+              <small>
+                Escucha todos los episodios
+              </small>
+
+            </div>
+
+
+            <b>
+              →
+            </b>
+
+          </a>
+
+
+
+          <a
+            class="platform ivoox"
+            href="https://www.ivoox.com/podcast-hasta-el-rabo-todo-es-toro_sq_f11846541_amp_1.html"
+            target="_blank"
+            rel="noopener"
+          >
 
             <div class="platform-icon">
+              iVoox
+            </div>
+
+
+            <div>
+
+              <strong>
+                iVoox
+              </strong>
+
+              <small>
+                Podcast completo
+              </small>
+
+            </div>
+
+
+            <b>
+              →
+            </b>
+
+          </a>
+
+
+
+          <a
+            class="platform anchor"
+            href="https://anchor.fm/s/dae0736c/podcast/rss"
+            target="_blank"
+            rel="noopener"
+          >
+
+            <div class="platform-icon">
+              RSS
+            </div>
+
+
+            <div>
+
+              <strong>
+                RSS
+              </strong>
+
+              <small>
+                Suscríbete al podcast
+              </small>
+
+            </div>
+
+
+            <b>
+              →
+            </b>
+
+          </a>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         EL PROGRAMA
+         =================================================== -->
+
+    <section
+      id="programa"
+      class="about-section"
+    >
+
+      <div class="wrap">
+
+
+        <div class="about-grid">
+
+
+          <div class="about-title">
+
+
+            <p class="kicker">
+              EL PROGRAMA
+            </p>
+
+
+            <h2>
+
+              Desde Murcia<br>
+
+              <em>
+                para el mundo.
+              </em>
+
+            </h2>
+
+
+          </div>
+
+
+
+          <div class="about-copy">
+
+
+            <p>
+
+              <strong>
+                Hasta el Rabo Todo es Toro
+              </strong>
+
+              es un podcast taurino dedicado a la
+              actualidad, la información, la opinión
+              y las entrevistas.
+
+            </p>
+
+
+            <p>
+
+              Un espacio para hablar de toros,
+              protagonistas, ferias, ganaderías
+              y todo aquello que rodea al mundo
+              de la tauromaquia.
+
+            </p>
+
+
+            <div class="hosts">
+
+              <span>
+                MANOLO GUILLÉN
+              </span>
+
+              <i>
+                ·
+              </i>
+
+              <span>
+                CÁNDIDO MARTÍNEZ
+              </span>
+
+            </div>
+
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         CTA FINAL
+         =================================================== -->
+
+    <section class="cta-section">
+
+      <div class="wrap">
+
+
+        <div class="cta-box">
+
+
+          <div>
+
+            <p class="kicker">
+              HASTA EL RABO
+            </p>
+
+
+            <h2>
+              Todo es Toro
+            </h2>
+
+
+          </div>
+
+
+          <a
+            class="btn btn-white"
+            href="#episodios"
+          >
+            Escuchar últimos episodios
+          </a>
+
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- =====================================================
+       PIE DE PÁGINA
+       ===================================================== -->
+
+  <footer>
+
+    <div class="wrap footer-inner">
+
+
+      <strong>
+        HASTA EL RABO TODO ES TORO
+      </strong>
+
+
+      <span>
+
+        ©
+        <span id="year"></span>
+
+        · Podcast taurino desde Murcia
+
+      </span>
+
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+
+  <script src="script.js?v=3"></script>
+
+
+</body>
+
+</html>
