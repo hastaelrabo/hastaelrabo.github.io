@@ -87,11 +87,6 @@ nav a:hover{
   color:var(--purple);
 }
 
-
-/* =========================================================
-   HERO
-   ========================================================= */
-
 .hero{
   padding:34px 0 54px;
   background:linear-gradient(#fff 0%,#fff 75%,#fff9fd 100%);
@@ -187,11 +182,6 @@ h2 em{
   color:var(--burgundy);
 }
 
-
-/* =========================================================
-   EPISODIOS
-   ========================================================= */
-
 .episodes-section{
   padding:70px 0;
   background:var(--soft);
@@ -252,31 +242,37 @@ h2 em{
   gap:12px;
 }
 
+/* PORTADAS DE LOS EPISODIOS: 50 x 50 PX */
+
 .episode-cover{
-  width:70px !important;
-  height:70px !important;
-  min-width:70px !important;
-  max-width:70px !important;
-  flex:0 0 70px !important;
+  width:50px !important;
+  height:50px !important;
+  min-width:50px !important;
+  max-width:50px !important;
+  min-height:50px !important;
+  max-height:50px !important;
+  flex:0 0 50px !important;
   overflow:hidden;
   border-radius:8px;
 }
 
 .episode-cover img{
   display:block;
-  width:70px !important;
-  height:70px !important;
-  min-width:70px !important;
-  max-width:70px !important;
-  min-height:70px !important;
-  max-height:70px !important;
+  width:50px !important;
+  height:50px !important;
+  min-width:50px !important;
+  max-width:50px !important;
+  min-height:50px !important;
+  max-height:50px !important;
   object-fit:cover;
   border-radius:8px;
 }
 
 .episode-art{
-  width:70px;
-  height:70px;
+  width:50px;
+  height:50px;
+  min-width:50px;
+  min-height:50px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -284,7 +280,7 @@ h2 em{
   color:#fff;
   font-family:Georgia,'Times New Roman',serif;
   font-weight:900;
-  font-size:18px;
+  font-size:14px;
 }
 
 .episode-meta{
@@ -362,11 +358,6 @@ h2 em{
   gap:8px;
 }
 
-
-/* =========================================================
-   ESCUCHAR
-   ========================================================= */
-
 .listen-section{
   padding:70px 0;
 }
@@ -426,11 +417,6 @@ h2 em{
   color:var(--purple);
 }
 
-
-/* =========================================================
-   PROGRAMA
-   ========================================================= */
-
 .about-section{
   padding:80px 0;
   background:var(--soft);
@@ -468,11 +454,6 @@ h2 em{
   letter-spacing:.08em;
 }
 
-
-/* =========================================================
-   CTA
-   ========================================================= */
-
 .cta-section{
   padding:40px 0;
 }
@@ -504,11 +485,6 @@ h2 em{
   white-space:nowrap;
 }
 
-
-/* =========================================================
-   FOOTER
-   ========================================================= */
-
 footer{
   border-top:1px solid var(--line);
   padding:24px 0;
@@ -527,11 +503,6 @@ footer{
 .footer-inner strong{
   color:var(--burgundy);
 }
-
-
-/* =========================================================
-   MÓVIL
-   ========================================================= */
 
 @media (max-width:800px){
 
@@ -566,7 +537,6 @@ footer{
   }
 
 }
-
 
 @media (max-width:600px){
 
@@ -623,28 +593,33 @@ footer{
     padding:14px;
   }
 
-  /* Imágenes todavía más pequeñas en móvil */
+  /* TAMBIÉN 50 x 50 PX EN MÓVIL */
+
   .episode-cover{
-    width:60px !important;
-    height:60px !important;
-    min-width:60px !important;
-    max-width:60px !important;
-    flex:0 0 60px !important;
+    width:50px !important;
+    height:50px !important;
+    min-width:50px !important;
+    max-width:50px !important;
+    min-height:50px !important;
+    max-height:50px !important;
+    flex:0 0 50px !important;
   }
 
   .episode-cover img{
-    width:60px !important;
-    height:60px !important;
-    min-width:60px !important;
-    max-width:60px !important;
-    min-height:60px !important;
-    max-height:60px !important;
+    width:50px !important;
+    height:50px !important;
+    min-width:50px !important;
+    max-width:50px !important;
+    min-height:50px !important;
+    max-height:50px !important;
   }
 
   .episode-art{
-    width:60px;
-    height:60px;
-    font-size:15px;
+    width:50px;
+    height:50px;
+    min-width:50px;
+    min-height:50px;
+    font-size:13px;
   }
 
   .episode-top{
