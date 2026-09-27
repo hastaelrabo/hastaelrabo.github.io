@@ -177,9 +177,26 @@ h2 em{
 }
 
 .text-link{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:11px 18px;
+  border-radius:999px;
+  background:var(--purple);
+  color:#fff;
   text-decoration:none;
-  font-weight:800;
-  color:var(--burgundy);
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.02em;
+  box-shadow:0 5px 14px rgba(155,0,182,.25);
+  transition:all .2s ease;
+}
+
+.text-link:hover{
+  background:var(--purple-dark);
+  color:#fff;
+  transform:translateY(-2px);
+  box-shadow:0 7px 18px rgba(155,0,182,.32);
 }
 
 .episodes-section{
