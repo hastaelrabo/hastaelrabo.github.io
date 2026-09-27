@@ -10,9 +10,7 @@
     content="width=device-width, initial-scale=1"
   >
 
-  <title>
-    Hasta el Rabo Todo es Toro | Podcast taurino
-  </title>
+  <title>Hasta el Rabo Todo es Toro | Podcast taurino</title>
 
   <meta
     name="description"
@@ -27,23 +25,30 @@
 
   <link
     rel="stylesheet"
-    href="styles.css?v=6"
+    href="styles.css?v=7"
   >
 
-  <!--
-    AJUSTES EXCLUSIVOS DE LA PORTADA
 
-    Imágenes de tamaño mediano.
-    No afecta a episodios.html.
-  -->
+  <!-- =====================================================
+       AJUSTES EXCLUSIVOS DE LA PORTADA
+       ===================================================== -->
 
   <style>
 
+    /*
+     * IMÁGENES DE LOS EPISODIOS
+     *
+     * Este tamaño solo afecta a la portada.
+     * episodios.html no se modifica.
+     */
+
     .episodes-grid .episode-cover {
-      width: 90px !important;
-      min-width: 90px !important;
-      height: 90px !important;
+      width: 130px !important;
+      min-width: 130px !important;
+      height: 130px !important;
+      border-radius: 16px;
     }
+
 
     .episodes-grid .episode-cover img {
       width: 100%;
@@ -52,12 +57,79 @@
       display: block;
     }
 
+
+    /*
+     * BOTÓN GRANDE:
+     * TODOS LOS EPISODIOS
+     */
+
+    .episodes-archive-large {
+      display: flex;
+      justify-content: center;
+      margin-top: 38px;
+    }
+
+
+    .episodes-archive-large a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-width: 320px;
+
+      padding: 18px 32px;
+
+      border-radius: 999px;
+
+      background: #5b2a86;
+      color: #ffffff;
+
+      text-decoration: none;
+
+      font-size: 15px;
+      font-weight: 900;
+
+      letter-spacing: .04em;
+
+      box-shadow:
+        0 10px 25px rgba(91, 42, 134, .20);
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+    }
+
+
+    .episodes-archive-large a:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 14px 30px rgba(91, 42, 134, .28);
+    }
+
+
+    /*
+     * MÓVIL
+     */
+
     @media (max-width: 600px) {
 
       .episodes-grid .episode-cover {
-        width: 82px !important;
-        min-width: 82px !important;
-        height: 82px !important;
+        width: 105px !important;
+        min-width: 105px !important;
+        height: 105px !important;
+      }
+
+
+      .episodes-archive-large {
+        margin-top: 30px;
+      }
+
+
+      .episodes-archive-large a {
+        width: 100%;
+        min-width: 0;
+        padding: 17px 20px;
       }
 
     }
@@ -144,20 +216,14 @@
 
         <div class="hero-copy">
 
-
           <p class="kicker">
             PODCAST TAURINO · DESDE MURCIA PARA EL MUNDO
           </p>
 
 
           <h1>
-
             Hasta el Rabo<br>
-
-            <em>
-              Todo es Toro
-            </em>
-
+            <em>Todo es Toro</em>
           </h1>
 
 
@@ -168,7 +234,6 @@
 
 
           <div class="hero-actions">
-
 
             <a
               class="btn btn-purple"
@@ -187,12 +252,9 @@
               Spotify →
             </a>
 
-
           </div>
 
-
         </div>
-
 
       </div>
 
@@ -214,7 +276,6 @@
 
         <div class="section-heading episode-heading">
 
-
           <div>
 
             <p class="kicker">
@@ -228,18 +289,13 @@
 
           </div>
 
-
-          <div class="episodes-archive-button">
-
-            <a href="./episodios.html">
-              TODOS LOS EPISODIOS →
-            </a>
-
-          </div>
-
-
         </div>
 
+
+        <!--
+          Los episodios se cargan automáticamente
+          desde episodes.json mediante script.js.
+        -->
 
         <div
           id="episodes"
@@ -254,332 +310,12 @@
         </div>
 
 
-      </div>
+        <!-- =================================================
+             BOTÓN GRANDE DE TODOS LOS EPISODIOS
+             ================================================= -->
 
-    </section>
+        <div class="episodes-archive-large">
 
-
-
-    <!-- ===================================================
-         ESCUCHAR
-         =================================================== -->
-
-    <section
-      id="escuchar"
-      class="listen-section"
-    >
-
-      <div class="wrap">
-
-
-        <div class="section-heading">
-
-
-          <p class="kicker">
-            DÓNDE ESCUCHARNOS
-          </p>
-
-
-          <h2>
-            Escucha el programa
-          </h2>
-
-
-          <p>
-            Todos nuestros episodios están disponibles
-            en las principales plataformas.
-          </p>
-
-
-        </div>
-
-
-
-        <div class="platform-grid platform-grid-3">
-
-
-          <a
-            class="platform spotify"
-            href="https://open.spotify.com/s/gckqUoL"
-            target="_blank"
-            rel="noopener"
-          >
-
-            <div class="platform-icon">
-              ♪
-            </div>
-
-
-            <div>
-
-              <strong>
-                Spotify
-              </strong>
-
-              <small>
-                Escucha todos los episodios
-              </small>
-
-            </div>
-
-
-            <b>
-              →
-            </b>
-
+          <a href="./episodios.html">
+            TODOS LOS EPISODIOS →
           </a>
-
-
-
-          <a
-            class="platform ivoox"
-            href="https://www.ivoox.com/podcast-hasta-el-rabo-todo-es-toro_sq_f11846541_amp_1.html"
-            target="_blank"
-            rel="noopener"
-          >
-
-            <div class="platform-icon">
-              iVoox
-            </div>
-
-
-            <div>
-
-              <strong>
-                iVoox
-              </strong>
-
-              <small>
-                Podcast completo
-              </small>
-
-            </div>
-
-
-            <b>
-              →
-            </b>
-
-          </a>
-
-
-
-          <a
-            class="platform anchor"
-            href="https://anchor.fm/s/dae0736c/podcast/rss"
-            target="_blank"
-            rel="noopener"
-          >
-
-            <div class="platform-icon">
-              RSS
-            </div>
-
-
-            <div>
-
-              <strong>
-                RSS
-              </strong>
-
-              <small>
-                Suscríbete al podcast
-              </small>
-
-            </div>
-
-
-            <b>
-              →
-            </b>
-
-          </a>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- ===================================================
-         EL PROGRAMA
-         =================================================== -->
-
-    <section
-      id="programa"
-      class="about-section"
-    >
-
-      <div class="wrap">
-
-
-        <div class="about-grid">
-
-
-          <div class="about-title">
-
-
-            <p class="kicker">
-              EL PROGRAMA
-            </p>
-
-
-            <h2>
-
-              Desde Murcia<br>
-
-              <em>
-                para el mundo.
-              </em>
-
-            </h2>
-
-
-          </div>
-
-
-
-          <div class="about-copy">
-
-
-            <p>
-
-              <strong>
-                Hasta el Rabo Todo es Toro
-              </strong>
-
-              es un podcast taurino dedicado a la
-              actualidad, la información, la opinión
-              y las entrevistas.
-
-            </p>
-
-
-            <p>
-
-              Un espacio para hablar de toros,
-              protagonistas, ferias, ganaderías
-              y todo aquello que rodea al mundo
-              de la tauromaquia.
-
-            </p>
-
-
-            <div class="hosts">
-
-              <span>
-                MANOLO GUILLÉN
-              </span>
-
-              <i>
-                ·
-              </i>
-
-              <span>
-                CÁNDIDO MARTÍNEZ
-              </span>
-
-            </div>
-
-
-          </div>
-
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-
-    <!-- ===================================================
-         CTA FINAL
-         =================================================== -->
-
-    <section class="cta-section">
-
-      <div class="wrap">
-
-
-        <div class="cta-box">
-
-
-          <div>
-
-            <p class="kicker">
-              HASTA EL RABO
-            </p>
-
-
-            <h2>
-              Todo es Toro
-            </h2>
-
-
-          </div>
-
-
-          <a
-            class="btn btn-white"
-            href="#episodios"
-          >
-            Escuchar últimos episodios
-          </a>
-
-
-        </div>
-
-
-      </div>
-
-    </section>
-
-
-  </main>
-
-
-
-  <!-- =====================================================
-       PIE DE PÁGINA
-       ===================================================== -->
-
-  <footer>
-
-    <div class="wrap footer-inner">
-
-
-      <strong>
-        HASTA EL RABO TODO ES TORO
-      </strong>
-
-
-      <span>
-
-        ©
-        <span id="year"></span>
-
-        · Podcast taurino desde Murcia
-
-      </span>
-
-
-    </div>
-
-  </footer>
-
-
-
-  <!-- =====================================================
-       JAVASCRIPT
-       ===================================================== -->
-
-  <script src="script.js?v=3"></script>
-
-
-</body>
-
-</html>
