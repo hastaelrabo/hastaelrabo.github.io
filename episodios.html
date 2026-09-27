@@ -1,64 +1,551 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Todos los episodios</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      padding: 40px 20px;
-      font-family: Arial, sans-serif;
-      background: white;
-      color: #222;
-      text-align: center;
-    }
+<title>Todos los episodios - Hasta el Rabo Todo es Toro</title>
 
-    h1 {
-      color: #5b2a86;
-      font-size: 32px;
-    }
+<style>
 
-    .prueba {
-      max-width: 600px;
-      margin: 40px auto;
-      padding: 30px;
-      border: 2px solid #5b2a86;
-      border-radius: 12px;
-    }
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #222222;
+  font-family: Arial, sans-serif;
+}
 
-    a {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 20px;
-      background: #5b2a86;
-      color: white;
-      text-decoration: none;
-      border-radius: 25px;
-    }
-  </style>
+/* CABECERA */
+
+header {
+  padding: 35px 20px;
+  background: #f5eee5;
+  text-align: center;
+}
+
+header h1 {
+  margin: 0 0 15px;
+  font-size: 34px;
+}
+
+header a {
+  display: inline-block;
+  padding: 10px 18px;
+  background: #5b2a86;
+  color: #ffffff;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: bold;
+}
+
+/* LISTA */
+
+#episodes {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 30px 20px 60px;
+}
+
+/* EPISODIO */
+
+.episode {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 16px 0;
+  border-bottom: 1px solid #dddddd;
+}
+
+.cover {
+  width: 80px;
+  height: 80px;
+  flex: 0 0 80px;
+}
+
+.cover img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.info {
+  flex: 1;
+  min-width: 0;
+}
+
+.number {
+  color: #5b2a86;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.title {
+  font-size: 15px;
+  font-weight: bold;
+  line-height: 1.35;
+}
+
+.date {
+  margin-top: 5px;
+  color: #888888;
+  font-size: 11px;
+}
+
+/* REPRODUCTOR */
+
+.player {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.player audio {
+  display: block;
+  width: 100%;
+  height: 40px;
+}
+
+/* CARGANDO */
+
+.loading {
+  padding: 50px 20px;
+  text-align: center;
+  color: #777777;
+}
+
+/* ERROR */
+
+.error {
+  margin: 30px 0;
+  padding: 20px;
+  background: #f8dddd;
+  color: #8a2222;
+  border-radius: 8px;
+  line-height: 1.5;
+}
+
+/* MÓVIL */
+
+@media (max-width: 600px) {
+
+  header h1 {
+    font-size: 29px;
+  }
+
+  #episodes {
+    padding: 20px 12px 50px;
+  }
+
+  .episode {
+    gap: 10px;
+    padding: 13px 0;
+  }
+
+  .cover,
+  .cover img {
+    width: 65px;
+    height: 65px;
+    flex-basis: 65px;
+  }
+
+  .title {
+    font-size: 13px;
+  }
+
+  .player audio {
+    height: 36px;
+  }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
-  <div class="prueba">
 
-    <h1>Todos los episodios</h1>
+<header>
 
-    <p>
-      ESTA ES UNA PRUEBA
-    </p>
+  <h1>Todos los episodios</h1>
 
-    <p>
-      Si puedes ver este texto, la página funciona correctamente.
-    </p>
+  <a href="index.html#episodios">
+    ← Volver a los últimos episodios
+  </a>
 
-    <a href="index.html">
-      Volver a la página principal
-    </a>
+</header>
 
+
+<div id="episodes">
+
+  <div class="loading">
+    Cargando episodios...
   </div>
+
+</div>
+
+
+<script>
+
+/*
+ * CARGAMOS episodes.json CON XMLHttpRequest
+ * EN VEZ DE fetch()
+ */
+
+var container = document.getElementById("episodes");
+
+var request = new XMLHttpRequest();
+
+request.open(
+  "GET",
+  "./episodes.json?v=" + new Date().getTime(),
+  true
+);
+
+
+/*
+ * Si tarda más de 15 segundos,
+ * mostramos un mensaje.
+ */
+
+request.timeout = 15000;
+
+
+request.onload = function() {
+
+  if (request.status < 200 || request.status >= 300) {
+
+    mostrarError(
+      "No se pudo cargar episodes.json. Código: " +
+      request.status
+    );
+
+    return;
+
+  }
+
+
+  try {
+
+    var data = JSON.parse(request.responseText);
+
+
+    if (
+      !data ||
+      !Array.isArray(data.episodes)
+    ) {
+
+      throw new Error(
+        "El archivo episodes.json no contiene la lista de episodios."
+      );
+
+    }
+
+
+    mostrarEpisodios(data.episodes);
+
+
+  } catch (error) {
+
+    mostrarError(
+      "El archivo episodes.json se ha encontrado, " +
+      "pero no se ha podido interpretar correctamente."
+    );
+
+    console.error(error);
+
+  }
+
+};
+
+
+request.onerror = function() {
+
+  mostrarError(
+    "No se ha podido conectar con episodes.json."
+  );
+
+};
+
+
+request.ontimeout = function() {
+
+  mostrarError(
+    "La carga de episodes.json ha tardado demasiado."
+  );
+
+};
+
+
+request.send();
+
+
+/* -------------------------------- */
+/* MOSTRAR ERROR */
+/* -------------------------------- */
+
+function mostrarError(mensaje) {
+
+  container.innerHTML =
+    '<div class="error">' +
+
+      '<strong>Ha habido un problema al cargar los episodios.</strong>' +
+
+      '<br><br>' +
+
+      mensaje +
+
+      '<br><br>' +
+
+      'Prueba a recargar la página.' +
+
+    '</div>';
+
+}
+
+
+/* -------------------------------- */
+/* ESCAPAR TEXTO */
+/* -------------------------------- */
+
+function escapar(texto) {
+
+  return String(texto || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+/* -------------------------------- */
+/* FECHA */
+/* -------------------------------- */
+
+function formatearFecha(valor) {
+
+  if (!valor) {
+    return "";
+  }
+
+  var fecha = new Date(valor);
+
+  if (isNaN(fecha.getTime())) {
+    return "";
+  }
+
+  return fecha.toLocaleDateString(
+    "es-ES",
+    {
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    }
+  );
+
+}
+
+
+/* -------------------------------- */
+/* MOSTRAR EPISODIOS */
+/* -------------------------------- */
+
+function mostrarEpisodios(episodios) {
+
+  var html = "";
+
+
+  episodios.forEach(function(ep) {
+
+
+    var tituloOriginal =
+      ep.title || "Episodio";
+
+
+    /*
+     * Detectamos temporada y episodio
+     */
+
+    var temporadaMatch =
+      tituloOriginal.match(/T\s*(\d+)/i);
+
+    var episodioMatch =
+      tituloOriginal.match(/E\s*(\d+)/i);
+
+
+    var temporada =
+      temporadaMatch
+      ? temporadaMatch[1]
+      : "";
+
+
+    var numero =
+      episodioMatch
+      ? episodioMatch[1]
+      : "";
+
+
+    /*
+     * Quitamos T4 E30 del título
+     */
+
+    var titulo =
+      tituloOriginal.replace(
+        /^\s*T\s*\d+\s*E\s*\d+\s*/i,
+        ""
+      );
+
+
+    /*
+     * Solo mostramos los primeros 50 caracteres
+     */
+
+    if (titulo.length > 50) {
+
+      titulo =
+        titulo.substring(0, 50).trim() + "…";
+
+    }
+
+
+    /*
+     * IMAGEN
+     */
+
+    var imagenHTML = "";
+
+
+    if (ep.image) {
+
+      imagenHTML =
+        '<img src="' +
+        escapar(ep.image) +
+        '" alt="" loading="lazy">';
+
+    } else {
+
+      imagenHTML =
+        '<div style="' +
+        'width:80px;' +
+        'height:80px;' +
+        'background:#eeeeee;' +
+        'border-radius:8px;' +
+        'display:flex;' +
+        'align-items:center;' +
+        'justify-content:center;' +
+        'color:#5b2a86;' +
+        'font-weight:bold;' +
+        '">' +
+        'HRT' +
+        '</div>';
+
+    }
+
+
+    /*
+     * REPRODUCTOR
+     */
+
+    var reproductor = "";
+
+
+    if (ep.audio) {
+
+      reproductor =
+        '<div class="player">' +
+
+          '<audio controls preload="none">' +
+
+            '<source src="' +
+            escapar(ep.audio) +
+            '" type="audio/mpeg">' +
+
+            'Tu navegador no puede reproducir este audio.' +
+
+          '</audio>' +
+
+        '</div>';
+
+    }
+
+
+    /*
+     * EPISODIO COMPLETO
+     */
+
+    html +=
+
+      '<article class="episode">' +
+
+        '<div class="cover">' +
+
+          imagenHTML +
+
+        '</div>' +
+
+
+        '<div class="info">' +
+
+          '<div class="number">' +
+
+            'T' +
+            escapar(temporada) +
+
+            (
+              numero
+              ? ' E' + escapar(numero)
+              : ''
+            ) +
+
+          '</div>' +
+
+
+          '<div class="title">' +
+
+            escapar(titulo) +
+
+          '</div>' +
+
+
+          '<div class="date">' +
+
+            escapar(
+              formatearFecha(ep.date)
+            ) +
+
+          '</div>' +
+
+
+          reproductor +
+
+
+        '</div>' +
+
+      '</article>';
+
+  });
+
+
+  if (!html) {
+
+    container.innerHTML =
+      '<div class="loading">' +
+      'No hay episodios disponibles.' +
+      '</div>';
+
+    return;
+
+  }
+
+
+  container.innerHTML = html;
+
+}
+
+</script>
 
 </body>
 </html>
