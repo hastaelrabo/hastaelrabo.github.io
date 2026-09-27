@@ -178,26 +178,19 @@
   </main>
 
   <script>
-    (function () {
+    (async function () {
 
-      var status =
-        document.getElementById("status");
-
-      var episodesContainer =
-        document.getElementById("episodes");
-
+      var status = document.getElementById("status");
+      var episodesContainer = document.getElementById("episodes");
 
       function escapeHtml(value) {
-
         return String(value || "")
           .replace(/&/g, "&amp;")
           .replace(/</g, "&lt;")
           .replace(/>/g, "&gt;")
           .replace(/"/g, "&quot;")
           .replace(/'/g, "&#039;");
-
       }
-
 
       function formatDate(value) {
 
@@ -205,233 +198,140 @@
           return "";
         }
 
-        var date =
-          new Date(value);
+        var date = new Date(value);
 
         if (isNaN(date.getTime())) {
           return "";
         }
 
-        return new Intl.DateTimeFormat(
-          "es-ES",
-          {
-            day: "numeric",
-            month: "long",
-            year: "numeric"
-          }
-        ).format(date);
-
+        return new Intl.DateTimeFormat("es-ES", {
+          day: "numeric",
+          month: "long",
+          year: "numeric"
+        }).format(date);
       }
 
+      try {
 
-      function loadEpisodes() {
+        status.textContent = "Cargando episodios…";
 
-        var request =
-          new XMLHttpRequest();
-
-
-        request.open(
-          "GET",
-          "./episodes.json?v=" +
-          new Date().getTime(),
-          true
+        var response = await fetch(
+          "./episodes.json?nocache=" + Date.now(),
+          {
+            cache: "no-store"
+          }
         );
 
+        if (!response.ok) {
+          throw new Error("HTTP " + response.status);
+        }
 
-        request.onreadystatechange =
-          function () {
+        var data = await response.json();
 
-            if (
-              request.readyState !== 4
-            ) {
-              return;
-            }
+        var episodes = Array.isArray(data.episodes)
+          ? data.episodes
+          : [];
 
+        if (!episodes.length) {
+          throw new Error(
+            "episodes.json no contiene episodios"
+          );
+        }
 
-            if (
-              request.status < 200 ||
-              request.status >= 300
-            ) {
+        status.innerHTML =
+          "<strong>" +
+          episodes.length +
+          "</strong> episodios encontrados.";
 
-              status.innerHTML =
-                '<div class="error">' +
-                '<strong>Error al cargar episodes.json</strong><br>' +
-                'Código HTTP: ' +
-                escapeHtml(request.status) +
-                '</div>';
+        var html = episodes.map(function (episode, index) {
 
-              return;
-            }
+          var title = String(
+            episode.title || "Episodio"
+          );
 
+          var shortTitle = title.slice(0, 50);
 
-            try {
+          if (title.length > 50) {
+            shortTitle += "…";
+          }
 
-              var data =
-                JSON.parse(
-                  request.responseText
-                );
+          var image = "";
 
+          if (episode.image) {
 
-              var episodes =
-                Array.isArray(data.episodes)
-                  ? data.episodes
-                  : [];
+            image =
+              '<img src="' +
+              escapeHtml(episode.image) +
+              '" alt="" loading="lazy">';
 
+          }
 
-              if (!episodes.length) {
+          var player = "";
 
-                status.innerHTML =
-                  '<div class="error">' +
-                  'El archivo episodes.json no contiene episodios.' +
-                  '</div>';
+          if (episode.audio) {
 
-                return;
-              }
+            player =
+              '<audio controls preload="none" src="' +
+              escapeHtml(episode.audio) +
+              '"></audio>';
 
+          }
 
-              status.innerHTML =
-                '<strong>' +
-                episodes.length +
-                '</strong> episodios encontrados.';
+          return (
 
+            '<article class="episode">' +
 
-              var html = "";
+              '<div class="episode-image">' +
+                image +
+              '</div>' +
 
+              '<div class="episode-info">' +
 
-              episodes.forEach(
-                function (episode, index) {
+                '<div class="episode-number">' +
+                  'Episodio ' +
+                  (index + 1) +
+                '</div>' +
 
-                  var originalTitle =
-                    String(
-                      episode.title ||
-                      "Episodio"
-                    );
+                '<h2 class="episode-title">' +
+                  escapeHtml(shortTitle) +
+                '</h2>' +
 
+                '<div class="episode-date">' +
+                  escapeHtml(
+                    formatDate(episode.date)
+                  ) +
+                '</div>' +
 
-                  var shortTitle =
-                    originalTitle.slice(
-                      0,
-                      50
-                    );
+                player +
 
+              '</div>' +
 
-                  if (
-                    originalTitle.length > 50
-                  ) {
-                    shortTitle += "…";
-                  }
+            '</article>'
 
+          );
 
-                  var image = "";
+        }).join("");
 
+        episodesContainer.innerHTML = html;
 
-                  if (episode.image) {
+      } catch (error) {
 
-                    image =
-                      '<img src="' +
-                      escapeHtml(
-                        episode.image
-                      ) +
-                      '" alt="" loading="lazy">';
+        console.error(
+          "Error cargando episodios:",
+          error
+        );
 
-                  }
-
-
-                  var player = "";
-
-
-                  if (episode.audio) {
-
-                    player =
-                      '<audio controls preload="none">' +
-                      '<source src="' +
-                      escapeHtml(
-                        episode.audio
-                      ) +
-                      '" type="audio/mpeg">' +
-                      'Tu navegador no puede reproducir este audio.' +
-                      '</audio>';
-
-                  }
-
-
-                  html +=
-
-                    '<article class="episode">' +
-
-                      '<div class="episode-image">' +
-                        image +
-                      '</div>' +
-
-                      '<div class="episode-info">' +
-
-                        '<div class="episode-number">' +
-                          'Episodio ' +
-                          (index + 1) +
-                        '</div>' +
-
-                        '<h2 class="episode-title">' +
-                          escapeHtml(
-                            shortTitle
-                          ) +
-                        '</h2>' +
-
-                        '<div class="episode-date">' +
-                          escapeHtml(
-                            formatDate(
-                              episode.date
-                            )
-                          ) +
-                        '</div>' +
-
-                        player +
-
-                      '</div>' +
-
-                    '</article>';
-
-                }
-              );
-
-
-              episodesContainer.innerHTML =
-                html;
-
-
-            } catch (error) {
-
-              status.innerHTML =
-                '<div class="error">' +
-                '<strong>Error leyendo episodes.json</strong><br>' +
-                escapeHtml(
-                  error.message
-                ) +
-                '</div>';
-
-            }
-
-          };
-
-
-        request.onerror =
-          function () {
-
-            status.innerHTML =
-              '<div class="error">' +
-              '<strong>No se pudo conectar con episodes.json.</strong>' +
-              '<br><br>' +
-              'Comprueba que el archivo esté publicado en GitHub Pages.' +
-              '</div>';
-
-          };
-
-
-        request.send();
+        status.innerHTML =
+          '<div class="error">' +
+            '<strong>' +
+              'No se han podido cargar los episodios.' +
+            '</strong><br>' +
+            escapeHtml(error.message) +
+            '<br><br>' +
+            'Comprueba que episodes.json esté publicado en GitHub Pages.' +
+          '</div>';
 
       }
-
-
-      loadEpisodes();
 
     })();
   </script>
