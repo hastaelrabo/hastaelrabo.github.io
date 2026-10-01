@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ases de Espadas | Manolo Guillén</title>
+    <meta name="description" content="Lo que los grandes matadores nunca habían contado sobre la suerte suprema de la Tauromaquia. Libro de Manolo Guillén con prólogo de Cándido Martínez.">
+    <meta name="keywords" content="Ases de Espadas, Manolo Guillén, tauromaquia, suerte suprema, toreros, matadores, libro taurino">
+    <meta property="og:title" content="Ases de Espadas | Manolo Guillén">
+    <meta property="og:description" content="Veinte grandes matadores revelan por primera vez los secretos de la suerte suprema.">
+    <meta property="og:image" content="cover-main.jpg">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-card: #141414;
+            --red: #c41e3a;
+            --red-dark: #8b0000;
+            --gold: #d4af37;
+            --text: #f5f5f5;
+            --text-muted: #a0a0a0;
+            --border: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+
+        /* Header / Nav */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: var(--red);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: var(--red);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--red);
+            color: white;
+            padding: 0.9rem 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            background: var(--red-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(196, 30, 58, 0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--red);
+            color: var(--red);
+        }
+
+        .btn-outline:hover {
+            background: var(--red);
+            color: white;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 2rem 4rem;
+            position: relative;
+            background: radial-gradient(ellipse at 30% 50%, rgba(196, 30, 58, 0.15) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 20%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+                        var(--bg-dark);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-text h1 span {
+            color: var(--red);
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+            max-width: 480px;
+        }
+
+        .hero-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .hero-meta strong {
+            color: var(--gold);
+            font-weight: 500;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6),
+                        0 0 0 1px rgba(255,255,255,0.05);
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.02) rotate(-1deg);
+        }
+
+        /* Sections */
+        section {
+            padding: 6rem 2rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 1rem;
+        }
+
+        .section-title span {
+            color: var(--red);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 3.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* About */
+        .about {
+            background: var(--bg-card);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .about-text p {
+            margin-bottom: 1.2rem;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        .about-text p strong {
+            color: var(--text);
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(196, 30, 58, 0.15), rgba(196, 30, 58, 0.05));
+            border-left: 4px solid var(--red);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+            margin: 2rem 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: var(--text);
+            font-style: italic;
+        }
+
+        /* Matadors */
+        .matadors {
+            background: var(--bg-dark);
+        }
+
+        .matadors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .matador-tag {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.8rem 1rem;
+            text-align: center;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .matador-tag:hover {
+            border-color: var(--red);
+            background: rgba(196, 30, 58, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Gallery */
+        .gallery {
+            background: var(--bg-card);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-item.wide {
+            grid-column: span 2;
+        }
+
+        .gallery-item.tall {
+            grid-row: span 2;
+            aspect-ratio: auto;
+        }
+
+        /* Buy */
+        .buy {
+            background: linear-gradient(180deg, var(--bg-dark) 0%, #1a0508 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .buy::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--red), transparent);
+        }
+
+        .price {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            color: var(--gold);
+            margin: 1.5rem 0 0.5rem;
+        }
+
+        .price span {
+            font-size: 1.5rem;
+            vertical-align: super;
+        }
+
+        .buy-info {
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .contact-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 2.5rem;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        .contact-item a {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--red);
+        }
+
+        .contact-item svg {
+            width: 22px;
+            height: 22px;
+            fill: var(--red);
+        }
+
+        /* Author */
+        .author {
+            background: var(--bg-card);
+        }
+
+        .author-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .author-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .author-info .role {
+            color: var(--red);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .author-info p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #050505;
+            padding: 3rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--red);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .hero-subtitle {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-meta {
+                justify-content: center;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .gallery-item.wide {
+                grid-column: span 1;
+            }
+
+            .author-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            nav ul {
+                display: none;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .matadors-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            header {
+                padding: 1rem;
+            }
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 4px;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="#" class="logo">ASES DE <span>ESPADAS</span></a>
+        <nav>
+            <ul>
+                <li><a href="#libro">El Libro</a></li>
+                <li><a href="#matadores">Matadores</a></li>
+                <li><a href="#galeria">Galería</a></li>
+                <li><a href="#comprar">Comprar</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>ASES DE<br><span>ESPADAS</span></h1>
+                <p class="hero-subtitle">
+                    Lo que los grandes matadores nunca habían contado sobre la suerte suprema de la Tauromaquia
+                </p>
+                <div class="hero-meta">
+                    <span><strong>Autor:</strong> Manolo Guillén</span>
+                    <span><strong>Prólogo:</strong> Cándido Martínez</span>
+                    <span><strong>Editorial:</strong> Numancia</span>
+                </div>
+                <div class="hero-buttons">
+                    <a href="#comprar" class="btn">Adquirir el libro — 25€</a>
+                    <a href="#libro" class="btn btn-outline">Descubrir más</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="cover-main.jpg" alt="Portada del libro Ases de Espadas de Manolo Guillén">
+            </div>
+        </div>
+    </section>
+
+    <!-- About the book -->
+    <section class="about" id="libro">
+        <div class="container">
+            <h2 class="section-title">La suerte <span>suprema</span></h2>
+            <p class="section-subtitle">
+                Un libro único que desvela los secretos mejor guardados del momento más decisivo y peligroso del toreo.
+            </p>
+            <div class="about-grid">
+                <div class="about-image">
+                    <img src="covers-stack-red.jpg" alt="Ejemplares del libro Ases de Espadas">
+                </div>
+                <div class="about-text">
+                    <p>
+                        <strong>Ases de Espadas</strong> es una obra monográfica dedicada exclusivamente a la suerte suprema: ese instante crucial en el que el matador se juega la vida y el triunfo en apenas unos segundos.
+                    </p>
+                    <p>
+                        Veinte toreros de primer nivel —de distintas generaciones— abren en canal su fórmula personal para ejecutar la estocada. Hablan de técnica, mentalidad, sensaciones, mantras, supersticiones, aciertos y fracasos como nunca antes se había contado.
+                    </p>
+                    <div class="highlight-box">
+                        <p>«Si este fuese un libro sobre fútbol, los grandes lanzadores de penalti contarían su secreto mejor guardado. Pero como es sobre Tauromaquia, son los grandes matadores quienes desvelan lo que nunca habían contado.»</p>
+                    </div>
+                    <p>
+                        315 páginas, más de 50 fotografías inéditas y un capítulo especial dedicado a Iván Fandiño. Un texto inaudito que cambia la perspectiva del aficionado sobre el momento más trascendental y tabú del toreo.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Matadors -->
+    <section class="matadors" id="matadores">
+        <div class="container">
+            <h2 class="section-title">Los <span>protagonistas</span></h2>
+            <p class="section-subtitle">
+                Veinte grandes figuras de ayer y de hoy que han confesado lo más íntimo sobre la estocada.
+            </p>
+            <div class="matadors-grid">
+                <div class="matador-tag">Ruiz Miguel</div>
+                <div class="matador-tag">José María Manzanares</div>
+                <div class="matador-tag">Andrés Roca Rey</div>
+                <div class="matador-tag">Ortega Cano</div>
+                <div class="matador-tag">Paco Ojeda</div>
+                <div class="matador-tag">César Rincón</div>
+                <div class="matador-tag">Joselito</div>
+                <div class="matador-tag">Jesulín de Ubrique</div>
+                <div class="matador-tag">Manuel Escribano</div>
+                <div class="matador-tag">Daniel Luque</div>
+                <div class="matador-tag">Juan Ortega</div>
+                <div class="matador-tag">Emilio de Justo</div>
+                <div class="matador-tag">Paco Ureña</div>
+                <div class="matador-tag">Uceda Leal</div>
+                <div class="matador-tag">Sánchez Vara</div>
+                <div class="matador-tag">El Fundi</div>
+                <div class="matador-tag">Pepín Liria</div>
+                <div class="matador-tag">Rafaelillo</div>
+                <div class="matador-tag">José A. Campuzano</div>
+                <div class="matador-tag">Iván Fandiño †</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery" id="galeria">
+        <div class="container">
+            <h2 class="section-title">Galería <span>del libro</span></h2>
+            <p class="section-subtitle">
+                Imágenes del volumen: portadas, páginas interiores y fotografías taurinas.
+            </p>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="cover-angled.jpg" alt="Portada del libro en ángulo">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="covers-stack-black.jpg" alt="Pila de ejemplares">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="interior-photo-manzanares.jpg" alt="José María Manzanares en el libro">
+                </div>
+                <div class="gallery-item wide" onclick="openLightbox(this)">
+                    <img src="interior-photos-bullfight.jpg" alt="Fotografías de lidia en el interior">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="interior-text.jpg" alt="Páginas de texto del libro">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="covers-stack-close.jpg" alt="Detalle del lomo del libro">
+                </div>
+                <div class="gallery-item wide" onclick="openLightbox(this)">
+                    <img src="interior-pages-flip.jpg" alt="Libro abierto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buy -->
+    <section class="buy" id="comprar">
+        <div class="container">
+            <h2 class="section-title">Consigue tu <span>ejemplar</span></h2>
+            <p class="section-subtitle">
+                Disponible ahora. Edición de 315 páginas con fotografías exclusivas.
+            </p>
+            <div class="price">25<span>€</span></div>
+            <p class="buy-info">Envío disponible · Contacto directo con el autor</p>
+
+            <div class="contact-box">
+                <div class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                    <a href="mailto:toreromedia@gmail.com">toreromedia@gmail.com</a>
+                </div>
+                <div class="contact-item">
+                    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+                    <a href="https://wa.me/34681913685" target="_blank">WhatsApp: 681 91 36 85</a>
+                </div>
+            </div>
+
+            <a href="mailto:toreromedia@gmail.com?subject=Pedido%20Ases%20de%20Espadas" class="btn">Pedir por email</a>
+        </div>
+    </section>
+
+    <!-- Author -->
+    <section class="author">
+        <div class="container">
+            <div class="author-content">
+                <div>
+                    <img src="cover-angled.jpg" alt="Manolo Guillén - Ases de Espadas" style="width:100%; border-radius:8px; box-shadow: 0 15px 40px rgba(0,0,0,0.4);">
+                </div>
+                <div class="author-info">
+                    <h3>Manolo Guillén</h3>
+                    <span class="role">Periodista y escritor taurino · Cartagena, 1974</span>
+                    <p>
+                        Autor de <em>Ahora que todos somos morantistas</em> (2023), <em>Toreros murcianos del ayer</em> (2020) y <em>Toros en La Condomina</em> (2012). Creador del podcast semanal <strong>«Hasta el rabo todo es toro»</strong>, junto a Cándido Martínez.
+                    </p>
+                    <p>
+                        En <em>Ases de Espadas</em>, su cuarto libro, ha logrado lo que parecía imposible: que veinte figuras del toreo bajen la guardia y cuenten, sin filtros, cómo se enfrentan al momento más decisivo de su oficio.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>
+            © 2026 Manolo Guillén · Editorial Numancia · 
+            <a href="mailto:toreromedia@gmail.com">Contacto</a>
+        </p>
+        <p style="margin-top: 0.5rem; font-size: 0.8rem;">
+            Página promocional no oficial creada para la difusión del libro
+        </p>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="Imagen ampliada">
+    </div>
+
+    <script>
+        function openLightbox(el) {
+            const img = el.querySelector('img');
+            document.getElementById('lightbox-img').src = img.src;
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
+</body>
+</html>
