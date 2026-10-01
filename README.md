@@ -1,7 +1,24 @@
-# Hasta el Rabo Todo es Toro — web
+# Ases de Espadas — Página promocional
 
-Web estática para GitHub Pages.
+Página web estática de promoción del libro **Ases de Espadas** de Manolo Guillén.
 
-Los episodios se actualizan automáticamente desde el RSS de Spotify/Anchor mediante GitHub Actions. El feed utilizado es `https://anchor.fm/s/dae0736c/podcast/rss`.
+## Cómo publicar en GitHub Pages
 
-El flujo se ejecuta cada 6 horas y también se puede lanzar manualmente desde **Actions → Actualizar episodios del podcast → Run workflow**.
+1. Crea un nuevo repositorio en GitHub (por ejemplo `ases-de-espadas` o `manolo-guillen-ases`).
+2. Sube todos los archivos de esta carpeta al repositorio (puedes arrastrarlos en la web de GitHub o usar `git`).
+3. Ve a **Settings → Pages**.
+4. En **Source** elige la rama `main` (o `master`) y la carpeta `/ (root)`.
+5. Guarda. En unos minutos tendrás la web en:
+   `https://tu-usuario.github.io/nombre-del-repo/`
+
+## Archivos incluidos
+
+- `index.html` — Página principal completa
+- Imágenes del libro (portadas e interiores)
+- `README.md` — Este archivo
+
+## Contacto del libro
+
+- Email: toreromedia@gmail.com  
+- WhatsApp: 681 91 36 85  
+- Precio: 25 €
