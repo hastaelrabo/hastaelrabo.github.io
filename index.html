@@ -10,339 +10,52 @@
 
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
 
-  <link rel="stylesheet" href="styles.css?v=12">
+  <link rel="stylesheet" href="styles.css?v=13">
 
   <style>
-    /* Estilos para la imagen del libro junto al botón */
+    /* Botón del libro con imagen integrada a ancho completo */
     .hero-actions {
       display: flex;
-      align-items: center;
-      gap: 22px;
+      align-items: flex-start;
+      gap: 20px;
       flex-wrap: wrap;
     }
 
-    .libro-thumb {
-      display: block;
-      flex-shrink: 0;
-      border-radius: 12px;
+    .btn-libro {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      width: 100%;
+      max-width: 340px;
+      padding: 0;
+      border-radius: 16px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,.18);
-      transition: transform .2s ease, box-shadow .2s ease;
-      line-height: 0;
+      background: var(--purple, #9b00b6);
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 10px 28px rgba(155, 0, 182, 0.28);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
     }
 
-    .libro-thumb img {
-      display: block;
-      width: 180px;
-      height: auto;
-    }
-
-    .libro-thumb:hover {
+    .btn-libro:hover {
+      background: var(--purple-dark, #730087);
       transform: translateY(-3px);
-      box-shadow: 0 14px 35px rgba(0,0,0,.25);
+      box-shadow: 0 14px 34px rgba(155, 0, 182, 0.38);
     }
 
-    @media (max-width: 800px) {
-      .hero-actions {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 18px;
-      }
-      .libro-thumb img {
-        width: 160px;
-      }
+    .btn-libro img {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 0;
     }
-  </style>
-</head>
 
-<body>
-
-<header class="topbar">
-  <div class="wrap topbar-inner">
-
-    <a class="brand" href="#inicio" aria-label="Hasta el Rabo Todo es Toro">
-      HASTA EL RABO <span>TODO ES TORO</span>
-    </a>
-
-    <nav aria-label="Navegación principal">
-      <a href="#episodios">Episodios</a>
-      <a href="#escuchar">Escuchar</a>
-      <a href="#programa">El programa</a>
-    </nav>
-
-  </div>
-</header>
-
-<main id="inicio">
-
-<section class="hero">
-  <div class="wrap">
-
-    <div class="logo-card">
-      <img
-        src="hero.jpg"
-        alt="Hasta el Rabo Todo es Toro"
-        class="logo"
-      >
-    </div>
-
-    <div class="hero-copy">
-
-      <p class="kicker">
-        PODCAST TAURINO · DESDE MURCIA PARA EL MUNDO
-      </p>
-
-      <h1>
-        Hasta el Rabo<br>
-        <em>Todo es Toro</em>
-      </h1>
-
-      <p class="intro">
-        <strong>
-          El mejor Podcast taurino semanal<br>
-          desde Murcia para el Mundo.
-        </strong>
-      </p>
-
-      <p class="intro">
-        Este es el nuevo programa de radio taurino semanal
-        de actualidad taurina. De la mano del periodista
-        Manolo Guillén, con la colaboración de Cándido Martínez.
-      </p>
-
-      <p class="intro">
-        Información, opinión, entrevistas y nuestras secciones habituales.
-      </p>
-
-      <div class="hero-actions">
-        <a
-          class="btn btn-purple"
-          href="libroases/"
-        >
-          LIBRO ASES DE ESPADAS, SOBRE LA SUERTE DE MATAR
-        </a>
-
-        <a href="libroases/" class="libro-thumb" title="Ver libro Ases de Espadas">
-          <img
-            src="IMG_20261002_003037.jpg"
-            alt="Ases de Espadas - Manolo Guillén"
-            width="180"
-          >
-        </a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section id="episodios" class="episodes-section">
-
-  <div class="wrap">
-
-    <div class="section-heading episode-heading">
-
-      <div>
-        <p class="kicker">
-          LOS 5 MÁS RECIENTES
-        </p>
-
-        <h2>
-          Últimos episodios
-        </h2>
-      </div>
-
-      <div class="rss-note">
-
-        <p>
-          Mostramos aquí solo los 5 episodios más recientes.
-        </p>
-
-        <a
-          class="previous-episodes-button"
-          href="episodios.html"
-        >
-          <span>
-            VER TODOS LOS PROGRAMAS
-          </span>
-
-          <strong>
-            →
-          </strong>
-        </a>
-
-      </div>
-    </div>
-
-    <div
-      id="episodes"
-      class="episodes-grid"
-      aria-live="polite"
-    >
-      <div class="loading-card">
-        Cargando los últimos episodios…
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<section id="escuchar" class="listen-section">
-
-  <div class="wrap">
-
-    <div class="section-heading">
-
-      <p class="kicker">
-        ESCUCHA EL PROGRAMA
-      </p>
-
-      <h2>
-        Elige dónde quieres escucharlo
-      </h2>
-
-      <p>
-        Encuentra
-        <strong>Hasta el Rabo Todo es Toro</strong>
-        en tus plataformas habituales.
-      </p>
-
-    </div>
-
-    <div class="platform-grid platform-grid-3">
-
-      <a
-        class="platform spotify"
-        href="https://open.spotify.com/s/gckqUoL"
-        target="_blank"
-        rel="noopener"
-      >
-
-        <span
-          class="platform-icon spotify-icon"
-          aria-hidden="true"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill="currentColor"
-              d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm4.58 14.42a.75.75 0 0 1-1.03.25c-2.83-1.73-6.39-2.12-10.58-1.16a.75.75 0 1 1-.34-1.46c4.59-1.05 8.52-.61 11.7 1.33.35.21.46.67.25 1.04Zm1.38-3.07a.94.94 0 0 1-1.29.31c-3.24-1.99-8.18-2.57-12.01-1.4a.94.94 0 1 1-.55-1.8c4.38-1.33 9.84-.68 13.54 1.59.44.27.58.85.31 1.3Zm.12-3.2C14.19 7.86 7.4 7.64 3.47 8.83a1.13 1.13 0 1 1-.65-2.16c4.52-1.37 12.04-1.09 16.61 1.62a1.13 1.13 0 0 1-1.35 1.86Z"
-            />
-          </svg>
-        </span>
-
-        <span class="platform-text">
-          <strong>Spotify</strong>
-          <small>Escuchar el podcast</small>
-        </span>
-
-        <b>↗</b>
-
-      </a>
-
-      <a
-        class="platform ivoox"
-        href="https://www.ivoox.com/podcast-hasta-el-rabo-todo-es-toro_sq_f11846541_amp_1.html"
-        target="_blank"
-        rel="noopener"
-      >
-
-        <span
-          class="platform-icon ivoox-icon"
-          aria-hidden="true"
-        >
-          iV
-        </span>
-
-        <span class="platform-text">
-          <strong>iVoox</strong>
-          <small>Escuchar el podcast</small>
-        </span>
-
-        <b>↗</b>
-
-      </a>
-
-      <a
-        class="platform anchor"
-        href="https://anchor.fm/hastaelrabo"
-        target="_blank"
-        rel="noopener"
-      >
-
-        <span
-          class="platform-icon podcast-icon"
-          aria-hidden="true"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill="currentColor"
-              d="M12 2.5a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm0 8.5a1.8 1.8 0 0 0-1.8 1.8v4.9a1.8 1.8 0 1 0 3.6 0v-4.9A1.8 1.8 0 0 0 12 11Zm-5.1-.8a.9.9 0 0 0-1.8 0v2.7a6.9 6.9 0 0 0 5.9 6.82v-1.84a5.08 5.08 0 0 1-4.1-4.98v-2.7Zm10.2 0v2.7a5.08 5.08 0 0 1-4.1 4.98v1.84a6.9 6.9 0 0 0 5.9-6.82v-2.7a.9.9 0 0 0-1.8 0ZM3.7 13.4a.9.9 0 0 0-1.8 0 10.1 10.1 0 0 0 9.2 10.04V21.6A8.3 8.3 0 0 1 3.7 13.4Z"
-            />
-          </svg>
-        </span>
-
-        <span class="platform-text">
-          <strong>Anchor / Podcast</strong>
-          <small>Escuchar el podcast</small>
-        </span>
-
-        <b>↗</b>
-
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<section id="programa" class="about-section">
-
-  <div class="wrap">
-
-    <div class="section-heading">
-
-      <p class="kicker">
-        EL PROGRAMA
-      </p>
-
-      <h2>
-        Actualidad taurina desde Murcia
-      </h2>
-
-      <p>
-        Información, opinión, entrevistas y nuestras secciones habituales,
-        con Manolo Guillén y Cándido Martínez.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-</main>
-
-<footer class="footer">
-
-  <div class="wrap">
-
-    <p>
-      HASTA EL RABO · TODO ES TORO
-    </p>
-
-    <p>
-      Podcast taurino semanal desde Murcia para el Mundo.
-    </p>
-
-  </div>
-
-</footer>
-
-<script src="script.js?v=9"></script>
-
-</body>
-</html>
+    .btn-libro span {
+      display: block;
+      padding: 14px 18px;
+      font-size: 13px;
+      font-weight: 900;
+      text-align: center;
+      line-height: 1.35;
+      letter-spacing: 0.
