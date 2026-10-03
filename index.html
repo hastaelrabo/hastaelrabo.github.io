@@ -50,9 +50,68 @@
       color: #fff;
     }
 
+    /* BOTÓN EPISODIOS ANTERIORES */
+
+    .previous-episodes-button {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: center;
+      width: 340px;
+      max-width: 100%;
+      padding: 0;
+      overflow: hidden;
+      border-radius: 16px;
+      background: #8b00a8;
+      color: #fff;
+      text-decoration: none;
+      box-shadow: 0 7px 20px rgba(155, 0, 182, 0.30);
+      transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .previous-episodes-button:hover {
+      background: #72008b;
+      color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(155, 0, 182, 0.38);
+    }
+
+    .previous-episodes-button img {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0;
+      padding: 0;
+      border: 0;
+    }
+
+    .previous-episodes-button span {
+      display: block;
+      padding: 13px 18px 5px;
+      color: #fff;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 900;
+      line-height: 1.25;
+      letter-spacing: 0.05em;
+    }
+
+    .previous-episodes-button strong {
+      display: block;
+      padding: 2px 18px 12px;
+      color: #fff;
+      text-align: center;
+      font-size: 20px;
+      line-height: 1;
+    }
+
     @media (max-width: 800px) {
       .btn-libro {
         max-width: 100%;
+      }
+
+      .previous-episodes-button {
+        width: 100%;
       }
     }
   </style>
@@ -128,7 +187,6 @@
   </div>
 </section>
 
-
 <section id="episodios" class="episodes-section">
 
   <div class="wrap">
@@ -155,8 +213,13 @@
           class="previous-episodes-button"
           href="episodios.html"
         >
+          <img
+            src="360_F_1922183307_BQtPo3uOimpN7UDLidmJ1RUTG5sYNs2t.jpg"
+            alt="Spotify, Apple Podcasts, iVoox, Podimo y SoundCloud"
+          >
+
           <span>
-            VER TODOS LOS PROGRAMAS
+            EPISODIOS ANTERIORES
           </span>
 
           <strong>
@@ -179,7 +242,6 @@
 
   </div>
 </section>
-
 
 <section id="escuchar" class="listen-section">
 
@@ -236,7 +298,6 @@
 
       </a>
 
-
       <a
         class="platform ivoox"
         href="https://www.ivoox.com/podcast-hasta-el-rabo-todo-es-toro_sq_f11846541_amp_1.html"
@@ -259,7 +320,6 @@
         <b>↗</b>
 
       </a>
-
 
       <a
         class="platform anchor"
@@ -296,7 +356,6 @@
   </div>
 </section>
 
-
 <section id="programa" class="about-section">
 
   <div class="wrap">
@@ -319,11 +378,9 @@
     </div>
 
   </div>
-
 </section>
 
 </main>
-
 
 <footer class="footer">
 
@@ -340,7 +397,6 @@
   </div>
 
 </footer>
-
 
 <script src="script.js?v=9"></script>
 
