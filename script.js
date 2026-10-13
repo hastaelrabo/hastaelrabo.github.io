@@ -1,3 +1,4 @@
+
 const yearEl = document.getElementById('year');
 
 if (yearEl) {
@@ -34,19 +35,15 @@ function formatDate(value) {
 }
 
 function cleanDescription(value) {
-  return String(value || '')
-    .replace(/\s+/g, ' ')
-    .trim();
+  return String(value || '').replace(/\s+/g, ' ').trim();
 }
 
 function limitDescription(text, maxLength) {
   if (text.length <= maxLength) return text;
-
   return text.slice(0, maxLength - 1).trimEnd() + '…';
 }
 
 function renderEpisodes(data) {
-
   if (!episodesEl) return;
 
   const allEpisodes = Array.isArray(data.episodes)
@@ -61,65 +58,58 @@ function renderEpisodes(data) {
     : allEpisodes.slice(0, 5);
 
   if (!episodes.length) {
-
     episodesEl.innerHTML = `
       <div class="loading-card">
         No hay episodios disponibles.
       </div>
     `;
-
     return;
   }
 
   episodesEl.innerHTML = episodes.map(function(ep, index) {
-
-    const description =
-      cleanDescription(ep.description || '');
-
-    const maxDescriptionLength =
-      showAll ? 50 : 100;
-
-    const shortDescription =
-      limitDescription(
-        description,
-        maxDescriptionLength
-      );
+    const description = cleanDescription(ep.description || '');
+    const maxDescriptionLength = showAll ? 50 : 100;
+    const shortDescription = limitDescription(
+      description,
+      maxDescriptionLength
+    );
 
     const image = ep.image
       ? `
-        <img
-          src="${escapeHtml(ep.image)}"
-          alt=""
-          loading="lazy"
-        >
+        <img src="${escapeHtml(ep.image)}" alt="" loading="lazy">
       `
       : `
-        <div class="episode-art">
-          <span>HRT</span>
-        </div>
+        <div class="episode-art"><span>HRT</span></div>
       `;
 
     const duration = ep.duration
-      ? `
-        <span>
-          ${escapeHtml(ep.duration)}
-        </span>
-      `
+      ? `<span>${escapeHtml(ep.duration)}</span>`
       : '';
 
     const audio = ep.audio
       ? `
         <div class="episode-player">
-          <audio
-            controls
-            preload="metadata"
-            src="${escapeHtml(ep.audio)}"
-          >
+          <audio controls preload="metadata"
+            src="${escapeHtml(ep.audio)}">
             Tu navegador no admite el reproductor de audio.
           </audio>
         </div>
       `
-      : '';
+      : ep.spotifyEmbed
+        ? `
+          <div class="episode-player">
+            <iframe
+              src="${escapeHtml(ep.spotifyEmbed)}"
+              width="100%"
+              height="152"
+              frameborder="0"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+              title="Reproductor de Spotify">
+            </iframe>
+          </div>
+        `
+        : '';
 
     const label =
       !showAll && index === 0
@@ -127,62 +117,36 @@ function renderEpisodes(data) {
         : 'EPISODIO';
 
     return `
-      <article
-        class="episode-card ${
-          index === 0
-            ? 'episode-featured'
-            : ''
-        }"
-      >
-
+      <article class="episode-card ${
+        index === 0 ? 'episode-featured' : ''
+      }">
         <div class="episode-top">
-
           <div class="episode-cover">
             ${image}
           </div>
 
           <div class="episode-meta">
+            <span class="episode-label">${label}</span>
 
-            <span class="episode-label">
-              ${label}
-            </span>
-
-            <time
-              datetime="${escapeHtml(ep.date || '')}"
-            >
-              ${escapeHtml(
-                formatDate(ep.date)
-              )}
+            <time datetime="${escapeHtml(ep.date || '')}">
+              ${escapeHtml(formatDate(ep.date))}
             </time>
 
             ${duration}
-
           </div>
-
         </div>
 
-        <h3>
-          ${escapeHtml(
-            ep.title || 'Episodio'
-          )}
-        </h3>
+        <h3>${escapeHtml(ep.title || 'Episodio')}</h3>
 
         ${
           shortDescription
-            ? `
-              <p>
-                ${escapeHtml(
-                  shortDescription
-                )}
-              </p>
-            `
+            ? `<p>${escapeHtml(shortDescription)}</p>`
             : ''
         }
 
         ${audio}
 
         <div class="episode-links">
-
           ${
             ep.link
               ? `
@@ -190,8 +154,7 @@ function renderEpisodes(data) {
                   class="episode-link-main"
                   href="${escapeHtml(ep.link)}"
                   target="_blank"
-                  rel="noopener"
-                >
+                  rel="noopener">
                   Ver episodio ↗
                 </a>
               `
@@ -202,87 +165,52 @@ function renderEpisodes(data) {
             class="episode-platform-link episode-spotify-link"
             href="https://creators.spotify.com/pod/show/hastaelrabo"
             target="_blank"
-            rel="noopener"
-          >
-            <span class="episode-platform-icon">
-              Spotify
-            </span>
+            rel="noopener">
+            <span class="episode-platform-icon">Spotify</span>
           </a>
 
           <a
             class="episode-platform-link episode-ivoox-link"
             href="https://www.ivoox.com/"
             target="_blank"
-            rel="noopener"
-          >
-            <span class="episode-platform-icon">
-              iVoox
-            </span>
+            rel="noopener">
+            <span class="episode-platform-icon">iVoox</span>
           </a>
-
         </div>
-
       </article>
     `;
-
   }).join('');
 }
 
 if (episodesEl) {
-
-  fetch(
-    'episodes.json?v=' + Date.now(),
-    {
-      cache: 'no-store'
-    }
-  )
-
-  .then(function(response) {
-
-    if (!response.ok) {
-      throw new Error(
-        'No se pudo cargar episodes.json'
-      );
-    }
-
-    return response.json();
-
+  fetch('episodes.json?v=' + Date.now(), {
+    cache: 'no-store'
   })
+    .then(function(response) {
+      if (!response.ok) {
+        throw new Error('No se pudo cargar episodes.json');
+      }
+      return response.json();
+    })
+    .then(function(data) {
+      renderEpisodes(data);
+    })
+    .catch(function(error) {
+      console.error('Error cargando episodios:', error);
 
-  .then(function(data) {
-
-    renderEpisodes(data);
-
-  })
-
-  .catch(function(error) {
-
-    console.error(
-      'Error cargando episodios:',
-      error
-    );
-
-    episodesEl.innerHTML = `
-      <div class="loading-card error-card">
-
-        <strong>
-          No se han podido cargar los episodios.
-        </strong>
-
-        <span>
-          Puedes escucharlos en
-          <a
-            href="https://creators.spotify.com/pod/show/hastaelrabo"
-            target="_blank"
-            rel="noopener"
-          >
-            Spotify
-          </a>.
-        </span>
-
-      </div>
-    `;
-
-  });
-
+      episodesEl.innerHTML = `
+        <div class="loading-card error-card">
+          <strong>No se han podido cargar los episodios.</strong>
+          <span>
+            Puedes escucharlos en
+            <a
+              href="https://creators.spotify.com/pod/show/hastaelrabo"
+              target="_blank"
+              rel="noopener">
+              Spotify
+            </a>.
+          </span>
+        </div>
+      `;
+    });
 }
